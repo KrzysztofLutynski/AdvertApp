@@ -89,9 +89,17 @@ public class EditAccountPageBean {
         return null;
     }
 
-    public String deleteAccount() throws BaseException {
-        accountSession.deleteAccount(account);
-        accountSession.resetSession();
-        return "success";
+    public String deleteAccount(){
+        try {
+            accountSession.deleteAccount(account);
+            accountSession.resetSession();
+            return "success";
+        } catch (BaseException ex) {
+            LOGGER.log(Level.SEVERE, null, ex);
+            if (ContextUtils.isI18NKeyExist(ex.getMessage())) {
+                ContextUtils.emitI18NMessage("editAccountForm:remark", ex.getMessage());
+            }
+            return null;
+        }
     }
 }

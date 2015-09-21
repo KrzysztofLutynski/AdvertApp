@@ -6,13 +6,13 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui">
 
-    
+
     <ui:define name="header">
         <p>#{msg['edit.account.description']}</p>
     </ui:define>
 
     <ui:define name="section">
-         <h:form id="editAccountForm" >
+        <h:form id="editAccountForm" >
             <h:panelGrid columns="3" cellpadding="10"  > 
 
                 <p:outputLabel value="#{msg['registration.name']}:" for="name" />         
@@ -37,21 +37,24 @@
 
                 <p:outputLabel value="#{msg['registration.passwordCheck']}:" for="passwordCheck"/>         
                 <p:password id="passwordCheck" value="#{editAccountPageBean.passwordCheck}" title="#{msg['registration.passwordCheck']}" 
-                               required="true" requiredMessage="#{msg['field.required']}!"/>
+                            required="true" requiredMessage="#{msg['field.required']}!"/>
                 <p:message for="passwordCheck"/>
-                <br/><br/><br/>
-                </h:panelGrid>
+                <br/><br/>
+                <p:message for="remark"/>
+                <h:outputText id="remark"/>
+                <br/>
+            </h:panelGrid>
 
-                <h:panelGrid class="center"  columns="3" >
+            <h:panelGrid class="center"  columns="3" >
 
-                    <p:commandButton value="#{msg['menu.edit']}" action="#{editAccountPageBean.editAccount}" 
-                                     onclick="return confirm('#{msg['register.confirm']}');"/>
+                <p:commandButton value="#{msg['menu.edit']}" action="#{editAccountPageBean.editAccount}" 
+                                 onclick="return confirm('#{msg['register.confirm']}');"/>
 
-                    <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
-                    
-                    <p:commandButton value="#{msg['button.delete']}" action="#{editAccountPageBean.deleteAccount}"
-                                     onclick="return confirm('#{msg['delete.confirm']}');"/>
-                </h:panelGrid>
+                <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
+
+                <p:commandButton value="#{msg['button.delete']}" action="#{editAccountPageBean.deleteAccount}"
+                                 onclick="return confirm('#{msg['account.delete.confirm']}');"/>
+            </h:panelGrid>
 
         </h:form>
 
