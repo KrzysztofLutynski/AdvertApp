@@ -1,6 +1,7 @@
 package pl.lodz.p.it.spjava.jee.ejb.endpoint;
 
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -26,14 +27,17 @@ public class AccountEndpoint extends AbstractEndpoint {
         accountFacade.create(account);
     }
 
+    @RolesAllowed("User")
     public void edit(final Account account) throws BaseException {
         accountFacade.edit(account);
     }
 
+    @RolesAllowed("User")
     public void delete(final Account account) throws BaseException {
         accountFacade.remove(account);
     }
 
+    @RolesAllowed("User")
     public Account obtainUserAccount() {
         return obtainAccountByLogin(obtainUserLogin());
     }
@@ -50,6 +54,7 @@ public class AccountEndpoint extends AbstractEndpoint {
         return accountFacade.obtainAccountByVerifCode(code);
     }
 
+    @RolesAllowed("Administrator")
     public List<Account> obtainAccounts() {
         return accountFacade.findAll();
     }

@@ -2,6 +2,7 @@ package pl.lodz.p.it.spjava.jee.ejb.facade;
 
 import java.util.Date;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,6 +30,7 @@ public class AdvertFacade extends AbstractFacade<Advert> {
         super(Advert.class);
     }
 
+    @RolesAllowed("User")
     public List<Advert> obtainUserAdverts(Account account) {
         TypedQuery<Advert> tq = em.createNamedQuery("Advert.findByIdAccount", Advert.class);
         tq.setParameter("x", account.getIdAccount());
@@ -58,6 +60,7 @@ public class AdvertFacade extends AbstractFacade<Advert> {
         return tq.getResultList();
     }
 
+    @RolesAllowed("User")
     public List<Advert> obtainReservedAdverts(Account account) {
         TypedQuery<Advert> tq = em.createNamedQuery("Advert.findByUserReserv", Advert.class);
         tq.setParameter("x", account.getIdAccount());

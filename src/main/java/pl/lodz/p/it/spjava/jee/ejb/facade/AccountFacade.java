@@ -1,5 +1,6 @@
 package pl.lodz.p.it.spjava.jee.ejb.facade;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -33,6 +34,7 @@ public class AccountFacade extends AbstractFacade<Account> {
         super(Account.class);
     }
 
+    @RolesAllowed("User")
     public Account obtainAccountByLogin(String login) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Account> query = cb.createQuery(Account.class);

@@ -2,6 +2,8 @@ package pl.lodz.p.it.spjava.jee.ejb.endpoint;
 
 import java.util.Date;
 import java.util.List;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -18,6 +20,7 @@ import pl.lodz.p.it.spjava.jee.model.Advert;
 @Stateless
 @LocalBean
 @Log
+@RolesAllowed("User")
 public class AdvertEndpoint extends AbstractEndpoint {
 
     @Inject
@@ -27,6 +30,7 @@ public class AdvertEndpoint extends AbstractEndpoint {
         advertFacade.create(advert);
     }
     
+    @PermitAll
     public List<Advert> obtainSearchedAdverts(final Object searchValue){
         return advertFacade.obtainSearchedAdverts(searchValue);
     }
