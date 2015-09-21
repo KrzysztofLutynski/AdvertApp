@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/templates/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="header">        
+        <p>#{msg['loginError.page']}</p>       
+    </ui:define>
+
+    <ui:define name="section" class="middle" >
+        <p>#{msg['loginError.description']} </p>
+        <br/>
+        <h:form>
+                <p:commandButton value="#{msg['action.return']}" action="loginPage" />
+                <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
+        </h:form>
+    </ui:define>
+
+</ui:composition>

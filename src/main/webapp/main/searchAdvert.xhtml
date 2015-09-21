@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/templates/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+
+
+    <ui:define name="header">
+        <p>#{msg['advert.search.header']}</p>
+    </ui:define>
+
+    <ui:define name="section">
+        <h:form id="searchAdvertForm">
+            <p:selectOneRadio id="searchRadio" value="#{searchAdvertPageBean.searchBy}" layout="custom">
+                <f:selectItem itemValue="category"/>
+                <f:selectItem itemValue="editDate"/>
+                <f:selectItem itemValue="lastName"/>
+                <f:ajax render="@form" resetValues="true"/>
+            </p:selectOneRadio>
+
+            <p:outputLabel value="#{msg['advert.search.by']}:" class="bold"/>
+
+            <h:panelGrid columns="1" cellpadding="10">
+
+                <h:panelGrid  columns="4">  
+                    <p:radioButton id="opt1" for="searchRadio" itemIndex="0"/>
+                    <p:outputLabel for="opt1" value="#{msg['advert.category']}"/>         
+                    <p:selectOneMenu  id="category" value="#{searchAdvertPageBean.searchValue}" title="#{msg['advert.category']}" 
+                                      converter="omnifaces.SelectItemsConverter" rendered="#{searchAdvertPageBean.searchBy=='category'}">
+                        <f:selectItem itemValue="#{null}" itemLabel="#{msg['advert.category.pick.one']}"/>
+                        <f:selectItems value="#{searchAdvertPageBean.categoryList}" var="c" itemValue="#{c}" itemLabel="#{c.category}"/>
+                    </p:selectOneMenu>
+                    <p:message for="category"/>
+                </h:panelGrid>
+                <h:panelGrid  columns="4">
+                    <p:radioButton id="opt2" for="searchRadio" itemIndex="1"/>
+                    <p:outputLabel for="opt2" value="#{msg['advert.date.edit']}"/>         
+                    <p:calendar id="editDate" value="#{searchAdvertPageBean.searchValue}" title="#{msg['advert.date.edit']}" 
+                                maxdate="#{now}" rendered="#{searchAdvertPageBean.searchBy=='editDate'}" pattern="MM/dd/yyyy HH:mm:ss"/>
+                    <p:message for="editDate"/>
+                </h:panelGrid>
+                <h:panelGrid  columns="4">
+                    <p:radioButton id="opt3" for="searchRadio" itemIndex="2"/>
+                    <p:outputLabel for="opt3" value="#{msg['registration.surname']}"/>         
+                    <p:inputText id="lastName" value="#{searchAdvertPageBean.searchValue}" title="#{msg['registration.surname']}"
+                                 rendered="#{searchAdvertPageBean.searchBy=='lastName'}"/> 
+                    <p:message for="lastName"/>
+                </h:panelGrid>
+
+            </h:panelGrid>
+
+            <h:panelGrid columns="2"  class="center">
+                <h:outputText id="searchButton"/>
+                <p:message for="searchButton"/>
+                
+                <p:commandButton value="#{msg['button.search']}" action="#{searchAdvertPageBean.searchAdvert()}"/> 
+                <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
+
+            </h:panelGrid>
+
+        </h:form>
+
+    </ui:define>
+
+
+</ui:composition>

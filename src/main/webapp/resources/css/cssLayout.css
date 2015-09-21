@@ -1,0 +1,52 @@
+/* 
+    Created on : 2015-07-02, 11:31:38
+    Author     : Krzysiek
+*/
+#header {
+    font-size: medium;
+    font-weight: bold;
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:10px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    width:200px;
+    float:left;
+    padding:5px;	      
+}
+#section {
+    float:left;
+    padding:10px;	 	 
+}
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    padding:10px;
+}
+
+.table{
+
+
+}
+
+.middle {
+    position: relative;  
+    padding: 10px;
+}
+
+.center{
+    text-align:center;
+}
+.right{
+    text-align: right;
+}
+
+.headerFont{
+    font-size: small;
+    font-weight: normal;
+}
+

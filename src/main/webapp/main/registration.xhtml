@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/templates/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="header">        
+        <p>#{msg['registration.description']}</p>     
+    </ui:define>
+
+    <ui:define name="section" >
+        <h:form id="registerForm" >
+            <h:panelGrid columns="3" cellpadding="10"  > 
+
+                <p:outputLabel value="#{msg['registration.name']}:" for="firstName" />         
+                <p:inputText id="firstName" value="#{registrationPageBean.account.firstName}"  title="#{msg['registration.name']}"/>
+                <p:message for="firstName" />
+
+
+                <p:outputLabel value="#{msg['registration.surname']}:" for="lastname"/>         
+                <p:inputText id="lastname" value="#{registrationPageBean.account.lastName}"  title="#{msg['registration.surname']}"/> 
+                <p:message for="lastname" />
+
+
+                <p:outputLabel value="#{msg['registration.email']}:" for="email"/>         
+                <p:inputText id="email" value="#{registrationPageBean.account.email}" title="#{msg['registration.email']}"/> 
+                <p:message for="email"  />
+
+
+                <p:outputLabel value="#{msg['registration.password']}:" for="password"/>         
+                <p:password id="password" value="#{registrationPageBean.account.password}" title="#{msg['registration.password']}" /> 
+                <p:message for="password"  />
+
+
+                <p:outputLabel value="#{msg['registration.passwordCheck']}:" for="passwordCheck"/>         
+                <p:password id="passwordCheck" value="#{registrationPageBean.passwordCheck}" title="#{msg['registration.passwordCheck']}" 
+                            required="true" requiredMessage="#{msg['field.required']}!"/>
+                <p:message for="passwordCheck"/>
+                <br/>
+            </h:panelGrid>
+            <h:panelGrid>
+                <p>#{msg['registration.instruction']}</p>
+                <br/>
+            </h:panelGrid>
+
+            <h:panelGrid class="center"  columns="2" >
+
+                <p:commandButton value="#{msg['menu.register']}" action="#{registrationPageBean.register}"
+                                 onclick="return confirm('#{msg['register.confirm']}');"/>
+
+                <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
+            </h:panelGrid>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/templates/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui">
+                
+
+
+
+    <ui:define name="header">
+        <p>#{msg['advert.view.header']}</p>
+    </ui:define>
+
+    <ui:define name="section">
+        <h:form id="viewAdvertForm">
+            <h:panelGrid columns="2" cellpadding="10"> 
+
+                <p:outputLabel value="#{msg['advert.category']}:" for="category" />         
+                <h:outputText id="category" value="#{viewAdvertPageBean.advert.category.category}" title="#{msg['advert.category']}" class="bold"/>
+
+                <p:outputLabel value="#{msg['advert.status']}:" for="status" />         
+                <h:outputText id="status" value="#{viewAdvertPageBean.advert.status.status}" title="#{msg['advert.status']}" class="bold"/>
+
+                <p:outputLabel value="#{msg['advert.seller']}:" for="seller" />         
+                <h:outputText id="seller" value="#{viewAdvertPageBean.advert.account.firstName} #{viewAdvertPageBean.advert.account.lastName}" 
+                              title="#{msg['advert.seller']}"/>
+
+                <p:outputLabel value="#{msg['registration.email']}:" for="email" />
+                <h:outputLink id="email" value="mailto:#{viewAdvertPageBean.advert.account.email}">
+                    <h:outputText value="#{viewAdvertPageBean.advert.account.email}" title="#{msg['registration.email']}"/>
+                </h:outputLink>
+
+                <p:outputLabel value="#{msg['advert.price']}:" for="price" />         
+                <h:outputText  id="price" value="#{viewAdvertPageBean.advert.price}"  title="#{msg['advert.price']}" class="bold">
+                    <f:convertNumber type="currency" minFractionDigits="2" currencySymbol="zł" />
+                </h:outputText>
+
+                <p:outputLabel value="#{msg['advert.title']}:" for="title" />         
+                <h:outputText  id="title" value="#{viewAdvertPageBean.advert.title}"  title="#{msg['advert.title']}" class="bold"/> 
+
+                <p:outputLabel value="#{msg['advert.description']}:" for="description"/>         
+                <h:outputText  id="description" value="#{viewAdvertPageBean.advert.description}"  title="#{msg['advert.description']}"/> 
+
+                <p:outputLabel value="#{msg['advert.date.add']}:" for="dateAdd" /> 
+                <h:outputText id="dateAdd" value="#{viewAdvertPageBean.advert.advertAddDate}"  title="#{msg['advert.date.add']}">
+                    <f:convertDateTime  type="both" dateStyle="medium" timeStyle="medium"/>
+                </h:outputText>
+
+                <p:outputLabel value="#{msg['advert.date.edit']}:" for="dateEdit" /> 
+                <h:outputText id="dateEdit" value="#{viewAdvertPageBean.advert.advertEditDate}"  title="#{msg['advert.date.edit']}">
+                    <f:convertDateTime  type="both" dateStyle="medium" timeStyle="medium"/>
+                </h:outputText>
+
+                <p:outputLabel value="#{msg['advert.date.expiry']}:" for="dateExpiry"  />         
+                <h:outputText id="dateExpiry" value="#{viewAdvertPageBean.advert.advertExpiryDate}"  title="#{msg['advert.date.expiry']}" >
+                    <f:convertDateTime  type="both" dateStyle="medium" timeStyle="medium"/>
+                </h:outputText>
+
+                <p:outputLabel value="#{msg['advert.date.reserved']}:" for="dateSell" rendered="#{viewAdvertPageBean.renderReserved()}" />         
+                <h:outputText id="dateSell" value="#{viewAdvertPageBean.advert.advertReserveDate}"  title="#{msg['advert.date.sell']}" 
+                              rendered="#{viewAdvertPageBean.renderReserved()}">
+                    <f:convertDateTime  type="both" dateStyle="medium" timeStyle="medium"/>
+                </h:outputText>
+
+                <p:outputLabel value="#{msg['advert.reserved.by']}:" for="reserved" rendered="#{viewAdvertPageBean.renderReserved()}"/>         
+                <h:outputText  id="reserved" value="#{viewAdvertPageBean.advert.buyerAccount.firstName} #{viewAdvertPageBean.advert.buyerAccount.lastName}"  
+                               title="#{msg['advert.title']}" rendered="#{viewAdvertPageBean.renderReserved()}" class="bold"/>
+
+                <h:panelGroup>
+                    <p:commandButton disabled="#{viewAdvertPageBean.disableReserve()}" value="#{msg['button.reserve']}" 
+                                     action="#{viewAdvertPageBean.reserveAdvert}" onclick="return confirm('#{msg['reserve.confirm']}');"  />
+
+
+                    <p:commandButton value="#{msg['button.contact.seller']}" action="#{viewAdvertPageBean.contactSeller}"
+                                     disabled="#{viewAdvertPageBean.disableContactSeller()}"/> 
+
+                </h:panelGroup>
+                <br/><br/>
+
+                <p:outputLabel value="#{msg['advert.picture']}:" for="picture" rendered="#{not empty viewAdvertPageBean.advert.picture}" />
+                <o:graphicImage id="picture" value="#{viewAdvertPageBean.advert.picture}" dataURI="true" rendered="#{not empty viewAdvertPageBean.advert.picture}" 
+                                title="#{msg['advert.picture']}"/>
+                <br/><br/>
+
+            </h:panelGrid>
+
+        </h:form>
+
+    </ui:define>
+
+
+</ui:composition>

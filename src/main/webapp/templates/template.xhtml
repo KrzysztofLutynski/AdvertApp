@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="../resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="../resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <!--dzięki poniższemu powtórzeniu pliki css są widziane na stronie startowej i stronie po wylogowaniu (?)-->
+        <link href="resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+
+        <title>${msg["app.name"]}</title>
+    </h:head>
+
+    <h:body>
+        <div id="header" >
+            <h2>
+            <ui:insert name="header"/>
+            </h2>
+            <div class="right">
+                <h:form  rendered="#{not empty request.remoteUser}">
+                    ${msg["app.welcome"]} #{accountSession.accountUser.firstName} #{accountSession.accountUser.lastName}
+                    <br/>
+                    ${msg["app.last.access"]}: 
+                    <h:outputText value="#{accountSession.accountUser.lastLoginDate}">
+                        <f:convertDateTime  type="both" dateStyle="medium" timeStyle="medium"/>
+                    </h:outputText>
+                </h:form>
+            </div>
+        </div>
+
+        <div id="nav">
+            <ui:insert name="nav">
+                <h:form>
+                    <h:commandLink action="/main/start?faces-redirect=true" value="#{msg['start.description']}" />
+                    <br/>
+                    <h:commandLink action="/login/loginPage?faces-redirect=true" value="#{msg['login.description']}" rendered="#{empty request.remoteUser}"/>
+                    <h:commandLink action="#{accountSession.resetSession()}" value="#{msg['logout.description']}" rendered="#{not empty request.remoteUser}"/>
+                    <br/>
+                    <h:commandLink action="/main/registration?faces-redirect=true" value="#{msg['registration.description']}" rendered="#{empty request.remoteUser}"/>
+                    <h:commandLink action="/user/editAccount?faces-redirect=true" value="#{msg['edit.account.description']}" rendered="#{not empty request.remoteUser}"/>
+                    <br/>
+                    <h:commandLink action="/main/searchAdvert?faces-redirect=true" value="#{msg['advert.search.header']}"/>
+                    <p>*********************</p>
+                </h:form>
+                <h:form rendered="#{not empty request.remoteUser}">
+                <!--<h:form>-->
+                    <h:commandLink action="/user/createAdvert?faces-redirect=true" value="#{msg['advert.create.header']}"/>
+                    <br/>
+                    <h:commandLink action="/user/listUserAdverts?faces-redirect=true" value="#{msg['advert.user.list.header']}"/>
+                    <br/>
+                    <h:commandLink action="/user/listReservedAdverts?faces-redirect=true" value="#{msg['advert.reserved.list.header']}"/>
+
+                </h:form>
+
+                    <p>*********************</p>
+                <h:form rendered="#{request.isUserInRole('Administrator')}">
+                    <h:commandLink action="/admin/listAccount?faces-redirect=true" value="#{msg['list.account.description']}"/>
+                    <p>*********************</p>
+
+
+
+                    <br/>
+                </h:form>
+            </ui:insert>
+        </div>
+
+        <div id="section">
+            <ui:insert name="section"/>
+        </div>
+
+        <div id="footer" class="center"> 
+
+            <div class="right">
+                <h:form class="right" rendered="#{not empty request.remoteUser}">
+                    ${msg["app.first.access"]}:
+                    <h:outputText value="#{accountSession.accountUser.activationDate}">
+                        <f:convertDateTime  type="both" dateStyle="medium" timeStyle="medium"/>
+                    </h:outputText>
+                </h:form>
+            </div>
+            <h:form>
+                ${msg["app.copyrights"]} Krzysztof Lutyński, 2015; 
+                <h:outputLink value="mailto:lutynski.krzysztof@gmail.com">${msg["app.author.contact"]}</h:outputLink>
+            </h:form>
+        </div>
+    </h:body>
+
+
+
+</html>

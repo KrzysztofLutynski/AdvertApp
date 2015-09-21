@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/templates/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+
+
+    <ui:define name="header">
+        <p>#{msg['advert.create.header']}</p>
+    </ui:define>
+
+    <ui:define name="section">
+        <h:form id="createAdvertForm" enctype="multipart/form-data">
+            <h:panelGrid columns="3" cellpadding="10"> 
+
+                <p:outputLabel value="#{msg['advert.category']}:" for="category" />         
+                <p:selectOneMenu id="category" value="#{createAdvertPageBean.advert.category}" converter="omnifaces.SelectItemsConverter">
+                    <f:selectItem itemValue="#{null}" itemLabel="#{msg['advert.category.pick.one']}"/>
+                    <f:selectItems value="#{createAdvertPageBean.categoryList}" var="c" itemValue="#{c}" itemLabel="#{c.category}"  />
+                </p:selectOneMenu>
+                <p:message for="category" />
+
+                <p:outputLabel value="#{msg['advert.title']}:" for="title" />         
+                <p:inputText  size="50" id="title" value="#{createAdvertPageBean.advert.title}"  title="#{msg['advert.title']}"/> 
+                <p:message for="title" />
+                
+                <p:outputLabel value="#{msg['advert.price']}:" for="price" />         
+                <p:inputText size="20" id="price" value="#{createAdvertPageBean.advert.price}"  title="#{msg['advert.price']}" converterMessage="#{msg['advert.price.not.valid']}">
+                    <f:convertNumber type="number" minFractionDigits="2"/>
+                </p:inputText>
+                <p:message for="price" />
+
+                <p:outputLabel value="#{msg['advert.date.expiry']}:" for="dateExpiry" />         
+                <p:calendar id="dateExpiry" value="#{createAdvertPageBean.advert.advertExpiryDate}"  title="#{msg['advert.date.expiry']}" 
+                            pattern="MM/dd/yyyy HH:mm:ss" mindate="#{now}" maxdate="#{createAdvertPageBean.maxExpiryDate()}"/> 
+                <p:message for="dateExpiry" />
+                
+                <p:outputLabel value="#{msg['advert.description']}:" for="description"/>         
+                <p:inputTextarea rows="8" cols="50" id="description" value="#{createAdvertPageBean.advert.description}"  title="#{msg['advert.description']}"/> 
+                <p:message for="description"  />
+
+                <p:outputLabel value="#{msg['advert.picture']}:" for="picture" />
+                <p:fileUpload fileUploadListener="#{createAdvertPageBean.uploadPicture}" id="picture"   
+                              auto="true" label="#{msg['action.browse']}"  mode="advanced" sizeLimit="1048576" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                              invalidSizeMessage="#{msg['advert.picture.invalid.size']}" invalidFileMessage="#{msg['advert.picture.invalid.type']}"/>
+                <p:message for="picture" />
+                <br/><br/><br/>
+
+            </h:panelGrid>
+            <h:panelGrid columns="2"  class="center">
+
+                <p:commandButton value="#{msg['menu.save']}" action="#{createAdvertPageBean.createAdvert}" 
+                                 onclick="return confirm('#{msg['register.confirm']}');"/>
+
+                <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
+            </h:panelGrid>
+
+        </h:form>
+
+    </ui:define>
+
+
+</ui:composition>

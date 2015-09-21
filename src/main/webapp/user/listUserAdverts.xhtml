@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/templates/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui">
+
+
+    <ui:define name="header">
+        <p>#{msg['advert.user.list.header']}</p>
+    </ui:define>
+
+    <ui:define name="section">
+        <h:form>
+            <h:outputText rendered="#{not listUserAdvertsPageBean.renderTable()}" value="#{msg['advert.user.list.empty']}"/>
+            <h:dataTable id="advList" var="adv" value="#{listUserAdvertsPageBean.advertList}" 
+                         headerClass="table_head" rowClasses="row_odd,row_even" rendered="#{listUserAdvertsPageBean.renderTable()}"> 
+                <h:column>
+                    <f:facet name="header">${msg['advert.title']}</f:facet>
+                    <h:outputText value="#{adv.title}" class="bold"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['advert.category']}</f:facet>
+                    <h:outputText value="#{adv.category.category}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['advert.price']}</f:facet>
+                    <h:outputText value="#{adv.price}" class="bold">
+                        <f:convertNumber type="currency" currencySymbol="zł"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['advert.date.add']}</f:facet>
+                    <h:outputText value="#{adv.advertAddDate}">
+                        <f:convertDateTime  type="both" dateStyle="short" timeStyle="medium"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['advert.date.edit']}</f:facet>
+                    <h:outputText value="#{adv.advertEditDate}">
+                        <f:convertDateTime  type="both" dateStyle="short" timeStyle="medium"/>
+                    </h:outputText>                
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['advert.date.expiry']}</f:facet>
+                    <h:outputText value="#{adv.advertExpiryDate}">
+                        <f:convertDateTime  type="both" dateStyle="short" timeStyle="medium"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['advert.date.reserved']}</f:facet>
+                    <h:outputText value="#{adv.advertReserveDate}">
+                        <f:convertDateTime  type="both" dateStyle="short" timeStyle="medium"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['advert.status']}</f:facet>
+                    <h:outputText value="#{adv.status.status}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['advert.reserved.by']}</f:facet>
+                    <h:outputLink value="mailto:#{adv.buyerAccount.email}">
+                        <h:outputText value="#{adv.buyerAccount.email}"/>
+                    </h:outputLink>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['advert.picture']}</f:facet>
+                    <o:graphicImage value="#{adv.picture}" dataURI="true" width="50" rendered="#{not empty adv.picture}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['action']}</f:facet>
+                    <h:commandLink value="${msg['button.view']}" action="#{listUserAdvertsPageBean.viewAdvert(adv)}"/><br/>
+                    <!--TODO: zastanowic się jakie ogłosenia edytować-->
+                    <h:commandLink value="${msg['button.edit']}" action="#{listUserAdvertsPageBean.editAdvert(adv)}" /><br/> 
+
+                    <h:commandLink value="${msg['button.template']}" action="#{listUserAdvertsPageBean.templateAdvert(adv)}"/><br/>
+
+                    <!--TODO: zastanowic się jakie ogłosenia wyświetlać-->
+                    <h:commandLink value="${msg['button.delete']}" action="#{listUserAdvertsPageBean.deleteAdvert(adv)}" 
+                                   onclick="return confirm('#{msg['advert.delete.confirm']}');"/><br/>
+                    <!--TODO: zastanowić się nad zmianą sposobu blokowania linku usuń-->
+                    <!--TODO: zastanowic się jakie ogłosenia usuwać-->
+                    <h:commandLink value="${msg['button.quit.reserv']}" action="#{listUserAdvertsPageBean.quitReserv(adv)}" 
+                                   onclick="return confirm('#{msg['advert.quit.reserv.confirm']}');"
+                                   rendered="#{listUserAdvertsPageBean.renderReserved(adv)}"/>
+                </h:column> 
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

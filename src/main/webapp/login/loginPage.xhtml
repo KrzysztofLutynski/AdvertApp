@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/templates/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="header">        
+        <p>#{msg['login.description']}</p>       
+    </ui:define>
+
+    <ui:define name="section" >
+
+        <form  method="post" action="j_security_check" >
+                <p:outputLabel value="#{msg['registration.email']}: "/> 
+                <input type="text" name="j_username"/><br/><br/>
+                <p:outputLabel value="#{msg['registration.password']}: "/> 
+                <input type="password" name="j_password"/><br/><br/>
+                <input type="submit" value="#{msg['menu.login']}" action="start"/><br/><br/>
+<!--                <h:outputText value="#{msg['app.no.account']}"/><br/><br/>
+                <h:commandButton value="#{msg['button.register']}" action="registration" immediate="true"/>-->
+        </form>
+
+    </ui:define>
+
+</ui:composition>

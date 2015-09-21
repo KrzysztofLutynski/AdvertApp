@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="/templates/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:define name="header">
+        <p>#{msg['list.account.description']}</p>
+    </ui:define>
+
+    <ui:define name="section">
+        <h:form id="accountListForm">
+            <h:dataTable id="accList" var="acc" value="#{listAccountPageBean.accountList}" 
+                         headerClass="table_head" rowClasses="row_odd,row_even"> 
+                <h:column>
+                    <f:facet name="header">${msg['registration.name']}</f:facet>
+                    <h:outputText value="#{acc.firstName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['registration.surname']}</f:facet>
+                    <h:outputText value="#{acc.lastName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['registration.email']}</f:facet>
+                    <h:outputLink value="mailto:#{acc.email}">
+                        <h:outputText value="#{acc.email}"/>
+                    </h:outputLink>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['registration.first.login.date']}</f:facet>
+                    <h:outputText value="#{acc.activationDate}">
+                        <f:convertDateTime  type="both" dateStyle="short" timeStyle="medium"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['registration.last.login.date']}</f:facet>
+                    <h:outputText value="#{acc.lastLoginDate}">
+                        <f:convertDateTime  type="both" dateStyle="short" timeStyle="medium"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['registration.active']}</f:facet>
+                    <h:selectBooleanCheckbox value="#{acc.active}" disabled="true"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['account.type']}</f:facet>
+                    <h:selectOneMenu value="#{acc.type}" disabled="#{acc.email==listAccountPageBean.account.email}" converter="omnifaces.SelectItemsConverter" >
+                        <f:selectItems value="#{listAccountPageBean.typeList}" var="t" itemValue="#{t}" itemLabel="#{t.type}"  />
+                    </h:selectOneMenu>
+                    <h:commandButton value="#{msg['menu.save']}" action="#{listAccountPageBean.editAccount(acc)}" 
+                                     onclick="return confirm('#{msg['register.confirm']}');" disabled="#{acc.email==listAccountPageBean.account.email}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">${msg['button.delete']}</f:facet>
+                    <h:commandLink value="${msg['button.delete']}" action="#{listAccountPageBean.deleteAccount(acc)}" 
+                                   onclick="return confirm('#{msg['account.delete.confirm']}');" disabled="#{acc.email==listAccountPageBean.account.email}"/>
+                </h:column>
+            </h:dataTable>
+            <br/><br/>
+            <h:outputText id="remark"/>
+            <p:message for="remark"/>
+        </h:form>
+    </ui:define>
+
+
+</ui:composition>
