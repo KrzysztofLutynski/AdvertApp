@@ -34,7 +34,7 @@ public class AccountFacade extends AbstractFacade<Account> {
         super(Account.class);
     }
 
-    @RolesAllowed("User")
+    @RolesAllowed({"User","Administrator"})
     public Account obtainAccountByLogin(String login) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Account> query = cb.createQuery(Account.class);
@@ -63,7 +63,7 @@ public class AccountFacade extends AbstractFacade<Account> {
     }
 
     @Override
-    @RolesAllowed({"User","System"})
+    @RolesAllowed({"User","Administrator","System"})
     public void edit(Account entity) throws BaseException {
         try {
             super.edit(entity);
@@ -74,7 +74,7 @@ public class AccountFacade extends AbstractFacade<Account> {
     }
 
     @Override
-    @RolesAllowed("User")
+    @RolesAllowed({"User","Administrator"})
     public void remove(Account entity) throws BaseException {
         try {
             super.remove(entity);

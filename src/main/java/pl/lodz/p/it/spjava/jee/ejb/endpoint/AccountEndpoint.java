@@ -27,17 +27,17 @@ public class AccountEndpoint extends AbstractEndpoint {
         accountFacade.create(account);
     }
 
-    @RolesAllowed({"User","System"})
+    @RolesAllowed({"User","Administrator","System"})
     public void edit(final Account account) throws BaseException {
         accountFacade.edit(account);
     }
 
-    @RolesAllowed("User")
+    @RolesAllowed({"User","Administrator"})
     public void delete(final Account account) throws BaseException {
         accountFacade.remove(account);
     }
 
-    @RolesAllowed("User")
+    @RolesAllowed({"User","Administrator"})
     public Account obtainUserAccount() {
         return obtainAccountByLogin(obtainUserLogin());
     }

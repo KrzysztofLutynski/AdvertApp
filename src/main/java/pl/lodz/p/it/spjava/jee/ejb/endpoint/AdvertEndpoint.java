@@ -20,7 +20,7 @@ import pl.lodz.p.it.spjava.jee.model.Advert;
 @Stateless
 @LocalBean
 @Log
-@RolesAllowed("User")
+@RolesAllowed({"User","Administrator"})
 public class AdvertEndpoint extends AbstractEndpoint {
 
     @Inject
@@ -57,7 +57,7 @@ public class AdvertEndpoint extends AbstractEndpoint {
         advertFacade.edit(advert);
     }
     
-    @RolesAllowed({"User","System"})
+    @RolesAllowed({"User","Administrator","System"})
     public void deleteAdvert (final Advert advert) throws BaseException{
         advertFacade.remove(advert);
     }

@@ -2,6 +2,7 @@ package pl.lodz.p.it.spjava.jee.ejb.facade;
 
 import java.util.Date;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,6 +17,7 @@ import pl.lodz.p.it.spjava.jee.model.Category;
  * @author Krzysiek
  */
 @Stateless
+@RolesAllowed({"User","Administrator"})
 public class AdvertFacade extends AbstractFacade<Advert> {
 
     @PersistenceContext(unitName = "pl.lodz.p.it.spjava_AdvertApp_war_0.1-SNAPSHOTPU")
@@ -30,13 +32,13 @@ public class AdvertFacade extends AbstractFacade<Advert> {
         super(Advert.class);
     }
 
-    @RolesAllowed("User")
     public List<Advert> obtainUserAdverts(Account account) {
         TypedQuery<Advert> tq = em.createNamedQuery("Advert.findByIdAccount", Advert.class);
         tq.setParameter("x", account.getIdAccount());
         return tq.getResultList();
     }
 
+    @PermitAll
     public List<Advert> obtainSearchedAdverts(Object searchValue) {
         String searchClass = searchValue.getClass().getSimpleName();
         TypedQuery<Advert> tq = null;
@@ -60,7 +62,6 @@ public class AdvertFacade extends AbstractFacade<Advert> {
         return tq.getResultList();
     }
 
-    @RolesAllowed("User")
     public List<Advert> obtainReservedAdverts(Account account) {
         TypedQuery<Advert> tq = em.createNamedQuery("Advert.findByUserReserv", Advert.class);
         tq.setParameter("x", account.getIdAccount());
