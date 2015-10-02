@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateful;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
@@ -19,6 +20,7 @@ import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
  * @author Krzysiek
  */
 @Stateful
+@RolesAllowed("System")
 public class HandleExpiration {
 
     private static final Logger LOGGER = Logger.getLogger(HandleExpiration.class.getName());
@@ -76,7 +78,7 @@ public class HandleExpiration {
 
     public void sendRemindingMessage(Advert advert) {
         try {
-            String subject = ContextUtils.i18NMessage("contact.expired.subject") + advert.getTitle();
+            String subject = ContextUtils.i18NMessage("contact.pre.expired.subject") + advert.getTitle();
             String toAddress = advert.getAccount().getEmail();
             String preMsg = ContextUtils.i18NMessage("contact.pre.msg");
             String msg = ContextUtils.i18NMessage("contact.pre.expired.msg");

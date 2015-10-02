@@ -66,14 +66,16 @@ public class AdvertFacade extends AbstractFacade<Advert> {
         tq.setParameter("x", account.getIdAccount());
         return tq.getResultList();
     }
-    
+
+    @RolesAllowed("System")
     public List<Advert> obtainExpiredAdverts(Date from, Date until) {
         TypedQuery<Advert> tq = em.createNamedQuery("Advert.findByExpiryDate", Advert.class);
         tq.setParameter("x", from);
         tq.setParameter("y", until);
         return tq.getResultList();
     }
-    
+
+    @RolesAllowed("System")
     public List<Advert> obtainExpiredReservedAdverts(Date from, Date until) {
         TypedQuery<Advert> tq = em.createNamedQuery("Advert.findByReserveDate", Advert.class);
         tq.setParameter("x", from);

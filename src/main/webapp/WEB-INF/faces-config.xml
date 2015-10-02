@@ -35,6 +35,7 @@
         <navigation-case>
             <from-outcome>loginPage</from-outcome>
             <to-view-id>/login/loginPage.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
         <navigation-case>
             <from-outcome>listAccount</from-outcome>

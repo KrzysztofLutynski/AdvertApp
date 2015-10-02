@@ -27,7 +27,7 @@ public class AccountEndpoint extends AbstractEndpoint {
         accountFacade.create(account);
     }
 
-    @RolesAllowed("User")
+    @RolesAllowed({"User","System"})
     public void edit(final Account account) throws BaseException {
         accountFacade.edit(account);
     }
@@ -50,6 +50,7 @@ public class AccountEndpoint extends AbstractEndpoint {
         return accountFacade.obtainAccountByLogin(login);
     }
     
+    @RolesAllowed("System")
     public Account obtainAccountByVerifCode(String code) throws NoResultException{
         return accountFacade.obtainAccountByVerifCode(code);
     }

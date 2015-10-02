@@ -3,6 +3,7 @@ package pl.lodz.p.it.spjava.jee.ejb.managers;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.security.RunAs;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +18,7 @@ import pl.lodz.p.it.spjava.jee.model.Account;
  * @author Krzysiek
  */
 @WebServlet(name = "EmailVerificationServlet", urlPatterns = {"/EmailVerificationServlet"})
+@RunAs("System")
 public class EmailVerificationServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(EmailVerificationServlet.class.getName());

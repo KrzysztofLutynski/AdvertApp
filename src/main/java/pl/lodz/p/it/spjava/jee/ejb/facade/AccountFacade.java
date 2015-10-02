@@ -45,6 +45,7 @@ public class AccountFacade extends AbstractFacade<Account> {
         return tq.getSingleResult();
     }
 
+    @RolesAllowed("System")
     public Account obtainAccountByVerifCode(String code) throws NoResultException {
         TypedQuery<Account> tq = em.createNamedQuery("Account.findByVerification", Account.class);
         tq.setParameter("x", code);
@@ -62,6 +63,7 @@ public class AccountFacade extends AbstractFacade<Account> {
     }
 
     @Override
+    @RolesAllowed({"User","System"})
     public void edit(Account entity) throws BaseException {
         try {
             super.edit(entity);
@@ -72,6 +74,7 @@ public class AccountFacade extends AbstractFacade<Account> {
     }
 
     @Override
+    @RolesAllowed("User")
     public void remove(Account entity) throws BaseException {
         try {
             super.remove(entity);

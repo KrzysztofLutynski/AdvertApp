@@ -43,10 +43,12 @@ public class AdvertEndpoint extends AbstractEndpoint {
         return advertFacade.obtainReservedAdverts(account);
     }
     
+    @RolesAllowed("System")
     public List<Advert> obtainExpiredAdverts(final Date from, Date until){
         return advertFacade.obtainExpiredAdverts(from, until);
     }
     
+    @RolesAllowed("System")
     public List<Advert> obtainExpiredReservedAdverts(final Date from, Date until){
         return advertFacade.obtainExpiredReservedAdverts(from, until);
     }
@@ -55,6 +57,7 @@ public class AdvertEndpoint extends AbstractEndpoint {
         advertFacade.edit(advert);
     }
     
+    @RolesAllowed({"User","System"})
     public void deleteAdvert (final Advert advert) throws BaseException{
         advertFacade.remove(advert);
     }

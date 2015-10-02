@@ -3,6 +3,7 @@ package pl.lodz.p.it.spjava.jee.ejb.managers;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.annotation.security.RunAs;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
@@ -14,6 +15,7 @@ import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
  * @author Krzysiek
  */
 @Stateless
+@RunAs("System")
 public class EmailVerificationManager {
     
     private static final Logger LOGGER = Logger.getLogger(EmailVerificationManager.class.getName());

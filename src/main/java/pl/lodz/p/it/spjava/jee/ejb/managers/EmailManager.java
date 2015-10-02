@@ -2,6 +2,7 @@ package pl.lodz.p.it.spjava.jee.ejb.managers;
 
 import java.util.Date;
 import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -18,6 +19,7 @@ import pl.lodz.p.it.spjava.jee.ejb.interceptors.Log;
  */
 @Stateless
 @Log
+@RolesAllowed({"User","System"})
 public class EmailManager {
 
     public EmailManager() {

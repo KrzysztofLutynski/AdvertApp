@@ -113,6 +113,10 @@
         <description/>
         <role-name>User</role-name>
     </security-role>
+    <security-role>
+        <description/>
+        <role-name>System</role-name>
+    </security-role>
     <error-page>
         <error-code>403</error-code>
         <location>/error/error403.xhtml</location>

@@ -1,10 +1,10 @@
 package pl.lodz.p.it.spjava.jee.ejb.timers;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateful;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
@@ -19,6 +19,7 @@ import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
  * @author Krzysiek
  */
 @Stateful
+@RolesAllowed("System")
 public class HandleReservation {
 
     private static final Logger LOGGER = Logger.getLogger(HandleReservation.class.getName());
