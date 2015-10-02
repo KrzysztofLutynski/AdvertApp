@@ -30,11 +30,6 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "ADVERT")
 @NamedQueries({
-    @NamedQuery(name = "Advert.findAll", query = "SELECT a FROM Advert a"),
-    @NamedQuery(name = "Advert.findByIdAdvert", query = "SELECT a FROM Advert a WHERE a.idAdvert = :idAdvert"),
-    @NamedQuery(name = "Advert.findByDescription", query = "SELECT a FROM Advert a WHERE a.description = :description"),
-    @NamedQuery(name = "Advert.findByPrice", query = "SELECT a FROM Advert a WHERE a.price = :price"),
-    @NamedQuery(name = "Advert.findByTitle", query = "SELECT a FROM Advert a WHERE a.title = :title"),
     @NamedQuery(name = "Advert.findByReserveDate", query = "SELECT a FROM Advert a WHERE a.advertReserveDate >= :x AND a.advertReserveDate <= :y AND a.status.idStatus=3"),//inUse
     @NamedQuery(name = "Advert.findByExpiryDate", query = "SELECT a FROM Advert a WHERE a.advertExpiryDate >= :x AND a.advertExpiryDate <= :y AND NOT a.status.idStatus=3"),//inUse
     @NamedQuery(name = "Advert.findByEditDate", query = "SELECT a FROM Advert a WHERE a.advertEditDate >= :x"),//inUse
@@ -42,7 +37,6 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Advert.findByLastName", query = "SELECT a FROM Advert a WHERE a.account.lastName = :x"),//inUse
     @NamedQuery(name = "Advert.findByUserReserv", query = "SELECT a FROM Advert a WHERE a.buyerAccount.idAccount = :x" ), //inUse
     @NamedQuery(name = "Advert.findByIdAccount", query = "SELECT a FROM Advert a WHERE a.account.idAccount = :x")})//inUse
-//    @NamedQuery(name = "Advert.findByVersion", query = "SELECT a FROM Advert a WHERE a.version = :version")})
 public class Advert implements Serializable {
 
     private static final long serialVersionUID = 1L;

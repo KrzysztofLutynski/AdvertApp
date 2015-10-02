@@ -19,10 +19,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "STATUS")
-@NamedQueries({
-    @NamedQuery(name = "Status.findAll", query = "SELECT s FROM Status s"),
-    @NamedQuery(name = "Status.findByIdStatus", query = "SELECT s FROM Status s WHERE s.idStatus = :idStatus"),
-    @NamedQuery(name = "Status.findByStatus", query = "SELECT s FROM Status s WHERE s.status = :status")})
 public class Status implements Serializable {
 
     private static final long serialVersionUID = 1L;

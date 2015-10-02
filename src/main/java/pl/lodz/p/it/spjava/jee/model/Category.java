@@ -23,10 +23,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "CATEGORY")
-@NamedQueries({
-    @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
-    @NamedQuery(name = "Category.findByIdCategory", query = "SELECT c FROM Category c WHERE c.idCategory = :idCategory"),
-    @NamedQuery(name = "Category.findByCategory", query = "SELECT c FROM Category c WHERE c.category = :category")})
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;

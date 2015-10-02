@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -30,18 +29,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "ACCOUNT")
-@NamedQueries({
-    @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a"),
-    @NamedQuery(name = "Account.findByIdAccount", query = "SELECT a FROM Account a WHERE a.idAccount = :idAccount"),
-    @NamedQuery(name = "Account.findByActivationdate", query = "SELECT a FROM Account a WHERE a.activationDate = :activationdate"),
-    @NamedQuery(name = "Account.findByEmail", query = "SELECT a FROM Account a WHERE a.email = :email"),
-    @NamedQuery(name = "Account.findByFirstname", query = "SELECT a FROM Account a WHERE a.firstName = :firstname"),
-    @NamedQuery(name = "Account.findByVerification", query = "SELECT a FROM Account a WHERE a.verification = :x"),//inUse
-    @NamedQuery(name = "Account.findByLastlogindate", query = "SELECT a FROM Account a WHERE a.lastLoginDate = :lastlogindate"),
-    @NamedQuery(name = "Account.findByLastname", query = "SELECT a FROM Account a WHERE a.lastName = :lastname"),
-    @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password"),
-    @NamedQuery(name = "Account.findByVersion", query = "SELECT a FROM Account a WHERE a.version = :version"),
-    @NamedQuery(name = "Account.findByActive", query = "SELECT a FROM Account a WHERE a.active = :active")})
+@NamedQuery(name = "Account.findByVerification", query = "SELECT a FROM Account a WHERE a.verification = :x")//inUse
 public class Account implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -99,8 +87,6 @@ public class Account implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Type type;
 
-//    TODO: zastanowić się nad zmianą, chyba powinno być ManyToMany i również zmiana 
-//            powinna nastąpić w klasie Advert
     @OneToMany(mappedBy = "buyerAccount", fetch = FetchType.LAZY)
     private Collection<Advert> advertCollection = new ArrayList<>();
 

@@ -1,5 +1,6 @@
 package pl.lodz.p.it.spjava.jee.ejb.facade;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -63,7 +64,7 @@ public class AccountFacade extends AbstractFacade<Account> {
     }
 
     @Override
-    @RolesAllowed({"User","Administrator","System"})
+    @PermitAll
     public void edit(Account entity) throws BaseException {
         try {
             super.edit(entity);

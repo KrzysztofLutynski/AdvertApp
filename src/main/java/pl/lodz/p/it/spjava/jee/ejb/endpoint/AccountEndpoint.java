@@ -1,6 +1,7 @@
 package pl.lodz.p.it.spjava.jee.ejb.endpoint;
 
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -27,7 +28,7 @@ public class AccountEndpoint extends AbstractEndpoint {
         accountFacade.create(account);
     }
 
-    @RolesAllowed({"User","Administrator","System"})
+    @PermitAll
     public void edit(final Account account) throws BaseException {
         accountFacade.edit(account);
     }
