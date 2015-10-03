@@ -34,6 +34,23 @@ a:link:hover, a:visited:hover  {
     font-weight: bold;
 }
 
+.table_fixed_size{
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+.column_low_width{
+    width: 70px;
+}
+
+.column_mid_width{
+    width: 150px;
+}
+
+.column_high_width{
+    width: 250px;
+}
+
 .row_odd{
     background-color: #ffffff;
 }

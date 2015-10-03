@@ -17,22 +17,23 @@
         <h:form>
             <h:outputText rendered="#{not listUserAdvertsPageBean.renderTable()}" value="#{msg['advert.user.list.empty']}"/>
             <h:dataTable id="advList" var="adv" value="#{listUserAdvertsPageBean.advertList}" 
-                         headerClass="table_head" rowClasses="row_odd,row_even" rendered="#{listUserAdvertsPageBean.renderTable()}"> 
-                <h:column>
+                         headerClass="table_head" rowClasses="row_odd,row_even" rendered="#{listUserAdvertsPageBean.renderTable()}"
+                         styleClass="table_fixed_size"> 
+                <h:column class="column_mid_width">
                     <f:facet name="header">${msg['advert.title']}</f:facet>
                     <h:outputText value="#{adv.title}" class="bold"/>
                 </h:column>
-                <h:column>
+                <h:column class="column_mid_width">
                     <f:facet name="header">${msg['advert.category']}</f:facet>
                     <h:outputText value="#{adv.category.category}"/>
                 </h:column>
-                <h:column>
+                <h:column class="column_low_width">
                     <f:facet name="header">${msg['advert.price']}</f:facet>
                     <h:outputText value="#{adv.price}" class="bold">
                         <f:convertNumber type="currency" currencySymbol="zł"/>
                     </h:outputText>
                 </h:column>
-                <h:column>
+                <h:column class="column_low_width">
                     <f:facet name="header">${msg['advert.date.add']}</f:facet>
                     <h:outputText value="#{adv.advertAddDate}">
                         <f:convertDateTime  type="both" dateStyle="short" timeStyle="medium"/>

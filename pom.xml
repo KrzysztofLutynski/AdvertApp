@@ -4,7 +4,7 @@
 
     <groupId>pl.lodz.p.it.spjava</groupId>
     <artifactId>AdvertApp</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>war</packaging>
 
     <name>AdvertApp</name>
