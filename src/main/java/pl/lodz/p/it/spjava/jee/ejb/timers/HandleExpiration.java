@@ -64,10 +64,10 @@ public class HandleExpiration {
 
     public void sendDeleteMessage(Advert advert) {
         try {
-            String subject = ContextUtils.i18NMessage("contact.expired.subject") + advert.getTitle();
+            String subject = ContextUtils.i18NMessageMail("contact.expired.subject") + advert.getTitle();
             String toAddress = advert.getAccount().getEmail();
-            String preMsg = ContextUtils.i18NMessage("contact.pre.msg");
-            String msg = ContextUtils.i18NMessage("contact.expired.msg");
+            String preMsg = ContextUtils.i18NMessageMail("contact.pre.msg");
+            String msg = ContextUtils.i18NMessageMail("contact.expired.msg");
             StringBuilder sb = new StringBuilder();
             sb.append(preMsg).append(System.lineSeparator()).append(System.lineSeparator()).append(msg);
             emailManager.sendEmail(advert.getAccount().getEmail(), subject, sb.toString());
@@ -78,10 +78,10 @@ public class HandleExpiration {
 
     public void sendRemindingMessage(Advert advert) {
         try {
-            String subject = ContextUtils.i18NMessage("contact.pre.expired.subject") + advert.getTitle();
+            String subject = ContextUtils.i18NMessageMail("contact.pre.expired.subject") + advert.getTitle();
             String toAddress = advert.getAccount().getEmail();
-            String preMsg = ContextUtils.i18NMessage("contact.pre.msg");
-            String msg = ContextUtils.i18NMessage("contact.pre.expired.msg");
+            String preMsg = ContextUtils.i18NMessageMail("contact.pre.msg");
+            String msg = ContextUtils.i18NMessageMail("contact.pre.expired.msg");
             StringBuilder sb = new StringBuilder();
             sb.append(preMsg).append(System.lineSeparator()).append(System.lineSeparator()).append(msg);
             emailManager.sendEmail(advert.getAccount().getEmail(), subject, sb.toString());

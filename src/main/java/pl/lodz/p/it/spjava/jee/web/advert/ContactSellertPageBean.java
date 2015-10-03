@@ -48,9 +48,9 @@ public class ContactSellertPageBean implements Serializable {
         advert = advertSession.getViewAdvert();
         reserveFlag = advertSession.isReserveFlag();
         if (reserveFlag) {
-            msg = ContextUtils.i18NMessage("contact.seller.reserve.msg");
+            msg = ContextUtils.i18NMessageMail("contact.seller.reserve.msg");
         } else {
-            msg = ContextUtils.i18NMessage("contact.seller.standard.msg");
+            msg = ContextUtils.i18NMessageMail("contact.seller.standard.msg");
         }
     }
     private Account account;
@@ -107,10 +107,10 @@ public class ContactSellertPageBean implements Serializable {
         if (reserveFlag) {
             reserveAdvert();
         }
-        String subject = ContextUtils.i18NMessage("contact.seller.subject") + advert.getTitle();
+        String subject = ContextUtils.i18NMessageMail("contact.seller.subject") + advert.getTitle();
         String toAddress = advert.getAccount().getEmail();
-        String preMsg = ContextUtils.i18NMessage("contact.seller.pre.msg") + " " + account.getFirstName() + " " + account.getLastName();
-        String postMsg = ContextUtils.i18NMessage("contact.seller.post.msg") + " " + account.getEmail();
+        String preMsg = ContextUtils.i18NMessageMail("contact.seller.pre.msg") + " " + account.getFirstName() + " " + account.getLastName();
+        String postMsg = ContextUtils.i18NMessageMail("contact.seller.post.msg") + " " + account.getEmail();
         StringBuilder sb = new StringBuilder();
         sb.append(preMsg).append(System.lineSeparator()).append(System.lineSeparator()).append(msg).
                 append(System.lineSeparator()).append(System.lineSeparator()).append(postMsg);

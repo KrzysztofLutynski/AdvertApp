@@ -65,10 +65,10 @@ public class HandleReservation {
 
     public void sendDeleteMessage(Advert advert) {
         try {
-            String subject = ContextUtils.i18NMessage("contact.expired.reserve.subject") + advert.getTitle();
+            String subject = ContextUtils.i18NMessageMail("contact.expired.reserve.subject") + advert.getTitle();
             String toAddress = advert.getAccount().getEmail();
-            String preMsg = ContextUtils.i18NMessage("contact.pre.msg");
-            String msg = ContextUtils.i18NMessage("contact.expired.reserve.msg");
+            String preMsg = ContextUtils.i18NMessageMail("contact.pre.msg");
+            String msg = ContextUtils.i18NMessageMail("contact.expired.reserve.msg");
             StringBuilder sb = new StringBuilder();
             sb.append(preMsg).append(System.lineSeparator()).append(System.lineSeparator()).append(msg);
             emailManager.sendEmail(advert.getAccount().getEmail(), subject, sb.toString());
@@ -79,10 +79,10 @@ public class HandleReservation {
 
     public void sendRemindingMessage(Advert advert) {
         try {
-            String subject = ContextUtils.i18NMessage("contact.pre.expired.reserve.subject") + advert.getTitle();
+            String subject = ContextUtils.i18NMessageMail("contact.pre.expired.reserve.subject") + advert.getTitle();
             String toAddress = advert.getAccount().getEmail();
-            String preMsg = ContextUtils.i18NMessage("contact.pre.msg");
-            String msg = ContextUtils.i18NMessage("contact.pre.expired.reserve.msg");
+            String preMsg = ContextUtils.i18NMessageMail("contact.pre.msg");
+            String msg = ContextUtils.i18NMessageMail("contact.pre.expired.reserve.msg");
             StringBuilder sb = new StringBuilder();
             sb.append(preMsg).append(System.lineSeparator()).append(System.lineSeparator()).append(msg);
             emailManager.sendEmail(advert.getAccount().getEmail(), subject, sb.toString());

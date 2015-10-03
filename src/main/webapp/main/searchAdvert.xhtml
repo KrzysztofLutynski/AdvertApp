@@ -14,7 +14,7 @@
     </ui:define>
 
     <ui:define name="section">
-        <h:form id="searchAdvertForm">
+        <h:form id="searchAdvertForm" styleClass="txt_center">
             <p:selectOneRadio id="searchRadio" value="#{searchAdvertPageBean.searchBy}" layout="custom">
                 <f:selectItem itemValue="category"/>
                 <f:selectItem itemValue="editDate"/>
@@ -22,7 +22,7 @@
                 <f:ajax render="@form" resetValues="true"/>
             </p:selectOneRadio>
 
-            <p:outputLabel value="#{msg['advert.search.by']}:" class="bold"/>
+            <p:outputLabel value="#{msg['advert.search.by']}:" />
 
             <h:panelGrid columns="1" cellpadding="10">
 

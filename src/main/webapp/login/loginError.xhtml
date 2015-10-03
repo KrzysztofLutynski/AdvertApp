@@ -11,12 +11,12 @@
         <p>#{msg['loginError.page']}</p>       
     </ui:define>
 
-    <ui:define name="section" class="middle" >
-        <p>#{msg['loginError.description']} </p>
-        <br/>
-        <h:form>
-                <p:commandButton value="#{msg['action.return']}" action="loginPage" />
-                <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
+    <ui:define name="section">
+        <h:form styleClass="txt_center">
+            <h:outputText  value="#{msg['loginError.description']}"/> 
+            <br/><br/><br/>
+            <h:commandButton value="#{msg['action.return']}" action="loginPage" />
+            <h:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
         </h:form>
     </ui:define>
 

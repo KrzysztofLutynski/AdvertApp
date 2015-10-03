@@ -41,6 +41,16 @@
 .right{
     text-align: right;
 }
+.txt_center{
+    font-weight: bolder;
+    font-size: 150%;
+    margin: 0;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%); 
+}
 
 .headerFont{
     font-size: small;

@@ -49,12 +49,18 @@ public class ContextUtils {
         FacesContext.getCurrentInstance().addMessage(id, msg);
     }
     
+    public static String i18NMessage(String key){
+        FacesMessage msg = new FacesMessage(ContextUtils.getDefaultBundle().getString(key));       
+        return msg.getDetail();
+    }
+    
     public static ResourceBundle getMailBundle(){
         return ResourceBundle.getBundle("i18n.mail");
     }
     
-    public static String i18NMessage(String key){
+    public static String i18NMessageMail(String key){
         FacesMessage msg = new FacesMessage(ContextUtils.getMailBundle().getString(key));       
         return msg.getDetail();
     }
+    
 }

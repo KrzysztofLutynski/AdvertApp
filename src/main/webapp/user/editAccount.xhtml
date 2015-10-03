@@ -25,8 +25,9 @@
                 <p:message for="surname"  />
 
 
-                <p:outputLabel value="#{msg['registration.email']}:" for="email"/>         
-                <p:inputText id="email" value="#{editAccountPageBean.account.email}" title="#{msg['registration.email']}"/> 
+                <p:outputLabel value="#{msg['registration.email']}:" for="email" />         
+                <p:inputText id="email" value="#{editAccountPageBean.account.email}" title="#{msg['registration.email']}"
+                             onclick="return confirm('#{msg['email.change.instruction']}');"/>
                 <p:message for="email"  />
 
 
@@ -48,17 +49,14 @@
             <h:panelGrid class="center"  columns="3" >
 
                 <p:commandButton value="#{msg['menu.edit']}" action="#{editAccountPageBean.editAccount}" 
-                                 onclick="return confirm('#{msg['register.confirm']}');"/>
-
+                                 onclick="return confirm('#{msg['confirm.box']}');"/>
+                
                 <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
 
                 <p:commandButton value="#{msg['button.delete']}" action="#{editAccountPageBean.deleteAccount}"
-                                 onclick="return confirm('#{msg['account.delete.confirm']}');"/>
+                                 onclick="return confirm('#{msg['account.delete.confirm']}');" />
+                                
             </h:panelGrid>
-
         </h:form>
-
     </ui:define>
-
-
 </ui:composition>

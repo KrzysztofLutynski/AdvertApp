@@ -15,7 +15,7 @@
 
     <ui:define name="section">
         <h:form>
-            <h:outputText rendered="#{not listSearchedAdvertsPageBean.renderTable()}" value="#{msg['advert.search.list.empty']}"/>
+            <h:outputText rendered="#{not listSearchedAdvertsPageBean.renderTable()}" value="#{msg['advert.search.list.empty']}" styleClass="txt_center"/>
             <h:dataTable id="advList" var="adv" value="#{listSearchedAdvertsPageBean.advertList}" headerClass="table_head" 
                          rowClasses="row_odd,row_even" rendered="#{listSearchedAdvertsPageBean.renderTable()}" styleClass="table_fixed_size" 
                          columnClasses="column_mid_width,column_low_width,column_low_width,column_low_width,column_low_width,

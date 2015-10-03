@@ -56,7 +56,7 @@ public class EditAccountPageBean {
     public void setAccount(Account account) {
         this.account = account;
     }
-
+    
     public String editAccount() {
         try {
             if (account.getPassword().length() < PASS_MIN_CHAR) {

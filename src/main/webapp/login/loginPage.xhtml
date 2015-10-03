@@ -12,17 +12,13 @@
     </ui:define>
 
     <ui:define name="section" >
-
-        <form  method="post" action="j_security_check" >
+        <form  method="post" action="j_security_check" class="txt_center">
                 <p:outputLabel value="#{msg['registration.email']}: "/> 
                 <input type="text" name="j_username"/><br/><br/>
                 <p:outputLabel value="#{msg['registration.password']}: "/> 
                 <input type="password" name="j_password"/><br/><br/>
                 <input type="submit" value="#{msg['menu.login']}" action="start"/><br/><br/>
-<!--                <h:outputText value="#{msg['app.no.account']}"/><br/><br/>
-                <h:commandButton value="#{msg['button.register']}" action="registration" immediate="true"/>-->
-        </form>
-
+            </form>
     </ui:define>
 
 </ui:composition>

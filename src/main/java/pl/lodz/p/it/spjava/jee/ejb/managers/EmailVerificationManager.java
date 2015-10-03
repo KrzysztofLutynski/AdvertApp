@@ -3,8 +3,9 @@ package pl.lodz.p.it.spjava.jee.ejb.managers;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.annotation.security.RunAs;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 import pl.lodz.p.it.spjava.jee.model.Account;
@@ -14,7 +15,7 @@ import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
  *
  * @author Krzysiek
  */
-@Stateless
+@Stateful
 @RunAs("System")
 public class EmailVerificationManager {
     
@@ -29,6 +30,10 @@ public class EmailVerificationManager {
     @PostConstruct
     public void init(){
         verifCode = verificationCode();
+    }
+    @PreDestroy
+    public void destroy(){
+        verifCode="";
     }
             
     private String verifCode;
@@ -45,8 +50,8 @@ public class EmailVerificationManager {
     
     public void sendVerificationEmail(Account account) {
         String address = account.getEmail();
-        String subject = ContextUtils.i18NMessage("contact.registration.subject");
-        String message = ContextUtils.i18NMessage("contact.registration.message");
+        String subject = ContextUtils.i18NMessageMail("contact.registration.subject");
+        String message = ContextUtils.i18NMessageMail("contact.registration.message");
         String url = "http://localhost:8080/AdvertApp/EmailVerificationServlet?verifCode=" + verifCode;
         StringBuilder sb = new StringBuilder();
         sb.append(message).append(System.lineSeparator()).append(System.lineSeparator()).append(url);
