@@ -15,7 +15,9 @@
     <ui:define name="section">
         <h:form id="accountListForm">
             <h:dataTable id="accList" var="acc" value="#{listAccountPageBean.accountList}" 
-                         headerClass="table_head" rowClasses="row_odd,row_even"> 
+                         headerClass="table_head" rowClasses="row_odd,row_even" styleClass="table_fixed_size" 
+                         columnClasses="column_low_width,column_low_width,column_low_width,column_low_width,
+                         column_low_width,center,column_low_width,column_low_width"> 
                 <h:column>
                     <f:facet name="header">${msg['registration.name']}</f:facet>
                     <h:outputText value="#{acc.firstName}"/>

@@ -40,15 +40,15 @@ a:link:hover, a:visited:hover  {
 }
 
 .column_low_width{
-    width: 70px;
+    width: 50px;
 }
 
 .column_mid_width{
-    width: 150px;
+    width: 220px;
 }
 
 .column_high_width{
-    width: 250px;
+    width: 240px;
 }
 
 .row_odd{
@@ -58,6 +58,7 @@ a:link:hover, a:visited:hover  {
 .row_even{
     background-color: #eeeeee;
 }
+
 .bold{
     font-weight: bold;
 }

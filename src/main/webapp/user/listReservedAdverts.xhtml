@@ -16,8 +16,10 @@
     <ui:define name="section">
         <h:form>
             <h:outputText rendered="#{not listReservedAdvertsPageBean.renderTable()}" value="#{msg['advert.reserved.list.empty']}"/>
-            <h:dataTable id="advList" var="adv" value="#{listReservedAdvertsPageBean.advertList}" 
-                         headerClass="table_head" rowClasses="row_odd,row_even" rendered="#{listReservedAdvertsPageBean.renderTable()}"> 
+            <h:dataTable id="advList" var="adv" value="#{listReservedAdvertsPageBean.advertList}" headerClass="table_head"
+                         rowClasses="row_odd,row_even" rendered="#{listReservedAdvertsPageBean.renderTable()}" styleClass="table_fixed_size" 
+                         columnClasses="column_mid_width,column_low_width,column_low_width,column_low_width,column_low_width,
+                         column_low_width,column_low_width,column_low_width,column_low_width,column_low_width,column_low_width"> 
                 <h:column>
                     <f:facet name="header">${msg['advert.title']}</f:facet>
                     <h:outputText value="#{adv.title}" class="bold"/>
@@ -61,9 +63,11 @@
                     <h:outputText value="#{adv.status.status}"/>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">${msg['advert.reserved.by']}</f:facet>
-                    <h:outputLink value="mailto:#{adv.buyerAccount.email}">
-                        <h:outputText value="#{adv.buyerAccount.email}"/>
+                    <f:facet name="header">${msg['advert.added.by']}</f:facet>
+                    <h:outputText value="#{adv.account.firstName} "/>
+                    <h:outputText value="#{adv.account.lastName} "/>
+                    <h:outputLink value="mailto:#{adv.account.email}">
+                        <h:outputText value="#{adv.account.email}"/>
                     </h:outputLink>
                 </h:column>
                 <h:column>

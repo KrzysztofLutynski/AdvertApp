@@ -93,6 +93,8 @@ public class ListUserAdvertsPageBean {
     }
     
     public String templateAdvert(Advert advert){
+        advert.SetBuyerAccount(null);
+        advert.setAdvertReserveDate(null);
         advertSession.setTemplateAdvert(advert);
         return "createAdvert";
     }
