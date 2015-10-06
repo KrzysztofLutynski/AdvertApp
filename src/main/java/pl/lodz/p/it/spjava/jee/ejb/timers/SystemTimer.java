@@ -6,6 +6,7 @@ import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+import pl.lodz.p.it.spjava.jee.ejb.interceptors.Log;
 
 /**
  *
@@ -15,6 +16,7 @@ import javax.inject.Inject;
 @Singleton
 @LocalBean
 @RunAs("System")
+@Log
 public class SystemTimer {
     
     @Inject

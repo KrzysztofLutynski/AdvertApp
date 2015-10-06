@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pl.lodz.p.it.spjava.jee.ejb.endpoint.AccountEndpoint;
+import pl.lodz.p.it.spjava.jee.ejb.interceptors.Log;
 import pl.lodz.p.it.spjava.jee.model.Account;
 
 /**
@@ -19,6 +20,7 @@ import pl.lodz.p.it.spjava.jee.model.Account;
  */
 @WebServlet(name = "EmailVerificationServlet", urlPatterns = {"/EmailVerificationServlet"})
 @RunAs("System")
+@Log
 public class EmailVerificationServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(EmailVerificationServlet.class.getName());

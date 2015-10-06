@@ -54,7 +54,7 @@
                         <f:selectItems value="#{listAccountPageBean.typeList}" var="t" itemValue="#{t}" itemLabel="#{t.type}"  />
                     </h:selectOneMenu>
                     <h:commandButton value="#{msg['menu.save']}" action="#{listAccountPageBean.editAccount(acc)}" 
-                                     onclick="return confirm('#{msg['register.confirm']}');" disabled="#{acc.email==listAccountPageBean.account.email}"/>
+                                     onclick="return confirm('#{msg['confirm.box']}');" disabled="#{acc.email==listAccountPageBean.account.email}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">${msg['button.delete']}</f:facet>

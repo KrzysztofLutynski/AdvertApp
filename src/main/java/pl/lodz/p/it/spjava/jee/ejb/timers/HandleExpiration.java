@@ -10,6 +10,7 @@ import javax.ejb.Stateful;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 import pl.lodz.p.it.spjava.jee.ejb.endpoint.AdvertEndpoint;
+import pl.lodz.p.it.spjava.jee.ejb.interceptors.Log;
 import pl.lodz.p.it.spjava.jee.ejb.managers.EmailManager;
 import pl.lodz.p.it.spjava.jee.exception.BaseException;
 import pl.lodz.p.it.spjava.jee.model.Advert;
@@ -21,6 +22,7 @@ import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
  */
 @Stateful
 @RolesAllowed("System")
+@Log
 public class HandleExpiration {
 
     private static final Logger LOGGER = Logger.getLogger(HandleExpiration.class.getName());

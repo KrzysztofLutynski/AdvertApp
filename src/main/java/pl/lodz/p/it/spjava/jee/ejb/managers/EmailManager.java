@@ -18,8 +18,8 @@ import pl.lodz.p.it.spjava.jee.ejb.interceptors.Log;
  * @author Krzysiek
  */
 @Stateless
-@Log
 @RolesAllowed({"User","Administrator","System"})
+@Log
 public class EmailManager {
 
     public EmailManager() {

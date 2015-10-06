@@ -3,11 +3,11 @@ package pl.lodz.p.it.spjava.jee.ejb.managers;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.annotation.security.RunAs;
 import javax.ejb.Stateful;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
+import pl.lodz.p.it.spjava.jee.ejb.interceptors.Log;
 import pl.lodz.p.it.spjava.jee.model.Account;
 import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
@@ -17,6 +17,7 @@ import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
  */
 @Stateful
 @RunAs("System")
+@Log
 public class EmailVerificationManager {
     
     private static final Logger LOGGER = Logger.getLogger(EmailVerificationManager.class.getName());
@@ -30,10 +31,6 @@ public class EmailVerificationManager {
     @PostConstruct
     public void init(){
         verifCode = verificationCode();
-    }
-    @PreDestroy
-    public void destroy(){
-        verifCode="";
     }
             
     private String verifCode;
