@@ -1,6 +1,8 @@
 package pl.lodz.p.it.spjava.jee.ejb.facade;
 
 import java.util.List;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import pl.lodz.p.it.spjava.jee.exception.BaseException;
 
@@ -8,6 +10,7 @@ import pl.lodz.p.it.spjava.jee.exception.BaseException;
  *
  * @author Krzysiek
  */
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public abstract class AbstractFacade<T> {
     private Class<T> entityClass;
 

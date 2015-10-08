@@ -5,6 +5,8 @@ import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 import pl.lodz.p.it.spjava.jee.ejb.facade.AccountFacade;
@@ -19,6 +21,7 @@ import pl.lodz.p.it.spjava.jee.model.Account;
 @Stateless
 @LocalBean
 @Log
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class AccountEndpoint extends AbstractEndpoint {
     
     @Inject

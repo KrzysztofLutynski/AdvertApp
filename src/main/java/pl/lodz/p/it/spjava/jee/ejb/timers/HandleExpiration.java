@@ -7,6 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateful;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 import pl.lodz.p.it.spjava.jee.ejb.endpoint.AdvertEndpoint;
@@ -23,6 +25,7 @@ import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 @Stateful
 @RolesAllowed("System")
 @Log
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class HandleExpiration {
 
     private static final Logger LOGGER = Logger.getLogger(HandleExpiration.class.getName());

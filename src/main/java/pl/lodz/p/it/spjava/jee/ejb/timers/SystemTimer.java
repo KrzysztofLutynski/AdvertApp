@@ -5,6 +5,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import pl.lodz.p.it.spjava.jee.ejb.interceptors.Log;
 
@@ -17,6 +19,7 @@ import pl.lodz.p.it.spjava.jee.ejb.interceptors.Log;
 @LocalBean
 @RunAs("System")
 @Log
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class SystemTimer {
     
     @Inject

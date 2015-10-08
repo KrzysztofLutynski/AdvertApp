@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -20,6 +22,7 @@ import pl.lodz.p.it.spjava.jee.model.Category;
 @Stateless
 @RolesAllowed({"User","Administrator"})
 @Log
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class AdvertFacade extends AbstractFacade<Advert> {
 
     @PersistenceContext(unitName = "pl.lodz.p.it.spjava_AdvertApp_war_0.1-SNAPSHOTPU")
