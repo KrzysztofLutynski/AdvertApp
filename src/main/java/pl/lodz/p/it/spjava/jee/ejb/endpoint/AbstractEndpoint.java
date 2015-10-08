@@ -1,5 +1,6 @@
 package pl.lodz.p.it.spjava.jee.ejb.endpoint;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
@@ -16,18 +17,23 @@ public abstract class AbstractEndpoint {
     private String transactionID;
     
     public void afterBegin(){
-        //przypisanie wartości transactionID - stworzyć unikalny ciąg znaków 
-        //identyfikujących transakcje można wykorzystać threadlocalrandom i currenttimemillis
-       
-        //wpis do loggera
+        transactionID = newTransactionID();
+        LOGGER.log(Level.INFO, "TXid={0} afterBegin: {1}, identity: {2}", 
+                new Object[]{transactionID, this.getClass().getName(), sctx.getCallerPrincipal().getName()});
     }
     public void beforeCompletion(){
-        //wpis do loggera
+        LOGGER.log(Level.INFO, "TXid={0} beforeCompletion: {1}, identity: {2}", 
+                new Object[]{transactionID, this.getClass().getName(), sctx.getCallerPrincipal().getName()});
     }
     
     public void afterCompletion(boolean commited){
-        //wis do loggera
+        LOGGER.log(Level.INFO, "TXid={0} afterCompletion: {1}, identity: {2}, result: {3}", 
+                new Object[]{transactionID, this.getClass().getName(), sctx.getCallerPrincipal().getName(), commited ? "COMMIT" : "ROLLBACK"});
     }
     
-    
+    private String newTransactionID() {
+        Long time = System.currentTimeMillis();
+        Integer rand = (int) (Math.random() * 100);
+        return time.toString() + rand.toString();
+    }
 }

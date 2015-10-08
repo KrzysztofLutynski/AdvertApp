@@ -83,7 +83,7 @@ public class ListReservedAdvertsPageBean {
             advert.setAdvertReserveDate(null);
             advert.setStatus(statusList.get(STATUS_ACTIVE));
             advertSession.editAdvert(advert);
-            return "listReservedAdverts" + "?faces-redirect=true";
+            return "listReservedAdverts";
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
         }

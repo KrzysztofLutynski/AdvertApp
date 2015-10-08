@@ -52,6 +52,26 @@
             <to-view-id>/user/contactSeller.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>listUserAdverts</from-outcome>
+            <to-view-id>/user/listUserAdverts.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listReservedAdverts</from-outcome>
+            <to-view-id>/user/listReservedAdverts.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editAdvert</from-outcome>
+            <to-view-id>/user/editAdvert.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>listSearchedAdverts</from-outcome>
+            <to-view-id>/main/listSearchedAdverts.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
             
             
     </navigation-rule>

@@ -23,30 +23,30 @@ public class LoggingInterceptor {
     public Object loggingInvokeForMethod(InvocationContext invocation) throws Exception {
         boolean flag = true;
         StringBuilder sb = new StringBuilder();
-        sb.append("Metoda biznesowa: ").append(invocation.getTarget().getClass().getName()).append(".").append(invocation.getMethod().getName());
-        sb.append("; wywołana przez: ").append(sctx.getCallerPrincipal().getName());
+        sb.append("METHOD: ").append(invocation.getTarget().getClass().getName()).append(".").append(invocation.getMethod().getName());
+        sb.append("; CALLED BY: ").append(sctx.getCallerPrincipal().getName());
         try {
             Object[] params = invocation.getParameters();
             if (params != null) {
                 for (Object param : params) {
                     if (param != null) {
-                        sb.append(" z parametrem: ").append(param.getClass().getName()).append("=").append(param.toString());
+                        sb.append(" PARAMETERS: ").append(param.getClass().getName()).append("=").append(param.toString());
                     }else{
-                        sb.append(" z parametrem: null");
+                        sb.append(" PARAMETER: null");
                     }
                 }
             }
             Object result = invocation.proceed();
             
             if(result!=null){
-                sb.append(". Zwrócono obiekt: ").append(result.getClass().getName()).append(" z wartością: ").append(result.toString());
+                sb.append(". OBJECT RETURNED: ").append(result.getClass().getName()).append(" VALUE: ").append(result.toString());
             }else{
-                sb.append(". Zwrócono wartość: null");
+                sb.append(". RETURNED VALUE: null");
             }
             return result;
         }catch(Exception ex){
             flag = false;
-            sb.append(". Wystąpił wyjątek: ").append(ex.getClass().getName());
+            sb.append(". EXCEPTION OCCURED: ").append(ex.getClass().getName());
             throw ex;
         }finally{
             if(flag){

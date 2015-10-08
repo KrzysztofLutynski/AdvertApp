@@ -20,7 +20,7 @@ import pl.lodz.p.it.spjava.jee.web.account.AccountSession;
 @Named("listUserAdvertsPageBean")
 @RequestScoped
 public class ListUserAdvertsPageBean {
-    
+
     private static final int STATUS_ACTIVE = 0;
     private static final int STATUS_RESERVED = 2;
 
@@ -31,7 +31,7 @@ public class ListUserAdvertsPageBean {
 
     @Inject
     private AdvertSession advertSession;
-    @Inject 
+    @Inject
     private AccountSession accountSesion;
 
     @PostConstruct
@@ -40,7 +40,7 @@ public class ListUserAdvertsPageBean {
         account = accountSesion.getAccountUser();
         advertList = advertSession.obtainUserAdverts(account);
     }
-    
+
     private Account account;
     private List<Advert> advertList;
     private List<Status> statusList;
@@ -60,7 +60,7 @@ public class ListUserAdvertsPageBean {
     public void setAccount(Account account) {
         this.account = account;
     }
-    
+
     public List<Advert> getAdvertList() {
         return advertList;
     }
@@ -68,47 +68,48 @@ public class ListUserAdvertsPageBean {
     public void setAdvertList(List<Advert> advertList) {
         this.advertList = advertList;
     }
-    
-    public boolean renderTable(){
+
+    public boolean renderTable() {
         return !advertList.isEmpty();
     }
-    
-    public boolean renderReserved(Advert advert){
+
+    public boolean renderReserved(Advert advert) {
         return advert.getStatus().equals(statusList.get(STATUS_RESERVED));
     }
 
     public String editAdvert(Advert advert) {
         advertSession.setEditAdvert(advert);
-        return "editAdvert" + "?faces-redirect=true";
+        return "editAdvert";
     }
 
     public String deleteAdvert(Advert advert) throws BaseException {
         advertSession.deleteAdvert(advert);
-        return "listAdvert" + "?faces-redirect=true";
+        return "listUserAdverts";
     }
-    
-    public String viewAdvert(Advert advert){
+
+    public String viewAdvert(Advert advert) {
         advertSession.setViewAdvert(advert);
         return "viewAdvert";
     }
-    
-    public String templateAdvert(Advert advert){
+
+    public String templateAdvert(Advert advert) {
         advert.SetBuyerAccount(null);
         advert.setAdvertReserveDate(null);
         advertSession.setTemplateAdvert(advert);
         return "createAdvert";
     }
+
     public String quitReserv(Advert advert) {
         try {
             advert.SetBuyerAccount(null);
             advert.setAdvertReserveDate(null);
             advert.setStatus(statusList.get(STATUS_ACTIVE));
             advertSession.editAdvert(advert);
-            return "listUserAdverts" + "?faces-redirect=true";
+            return "listUserAdverts";
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
+
 }

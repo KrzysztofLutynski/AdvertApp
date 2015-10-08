@@ -66,7 +66,7 @@ public class ListAccountPageBean {
     public String editAccount(Account account) {
         try {
             accountSession.accountEdit(account);
-            return "listAccount" + "?faces-redirect=true";
+            return "listAccount";
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
 //            if (ContextUtils.isI18NKeyExist(ex.getMessage())) {
@@ -79,7 +79,7 @@ public class ListAccountPageBean {
     public String deleteAccount(Account account) {
         try {
             accountSession.deleteAccount(account);
-            return "listAccount" + "?faces-redirect=true";
+            return "listAccount";
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
             if (ContextUtils.isI18NKeyExist(ex.getMessage())) {

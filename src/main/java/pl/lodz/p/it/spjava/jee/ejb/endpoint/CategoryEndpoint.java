@@ -4,7 +4,8 @@ package pl.lodz.p.it.spjava.jee.ejb.endpoint;
 
 import java.util.List;
 import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
+import javax.ejb.SessionSynchronization;
+import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
@@ -16,11 +17,11 @@ import pl.lodz.p.it.spjava.jee.model.Category;
  *
  * @author Krzysiek
  */
-@Stateless
+@Stateful
 @LocalBean
 @Log
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-public class CategoryEndpoint extends AbstractEndpoint {
+public class CategoryEndpoint extends AbstractEndpoint implements SessionSynchronization {
 
     @Inject
     private CategoryFacade categoryFacade;
