@@ -75,8 +75,6 @@ public class AccountFacade extends AbstractFacade<Account> {
         try {
             super.edit(entity);
             em.flush();
-        } catch (OptimisticLockException ole) {
-            throw AccountException.createForAccountOptimistickLockEx(entity, ole);
         } catch (PersistenceException pe) {
             throw AccountException.createForNonUniqueEmail(entity, pe);
         }
@@ -88,8 +86,6 @@ public class AccountFacade extends AbstractFacade<Account> {
         try {
             super.remove(entity);
             em.flush();
-        } catch (OptimisticLockException ole) {
-            throw AccountException.createForAccountOptimistickLockEx(entity, ole);
         } catch (PersistenceException pe) {
             throw AccountException.createForAccountUsedByDB(entity, pe);
         }

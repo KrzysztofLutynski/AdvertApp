@@ -51,10 +51,4 @@ public class AccountException extends BaseException {
         return ae;
     }
     
-    public static AccountException createForAccountOptimistickLockEx(Account account, OptimisticLockException ole){
-        AccountException ae = new AccountException(KEY_ACCOUNT_CHANGED_VIOLATION, ole);
-        ae.account=account;
-        return ae;
-    }
-    
 }

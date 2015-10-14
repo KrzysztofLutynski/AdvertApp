@@ -55,7 +55,6 @@
                     </h:selectOneMenu>
                     <h:commandButton value="#{msg['menu.save']}" action="#{listAccountPageBean.editAccount(acc)}" 
                                      onclick="return confirm('#{msg['confirm.box']}');" disabled="#{acc.email==listAccountPageBean.account.email}"/> 
-
                 </h:column>
                 <h:column>
                     <f:facet name="header">${msg['button.delete']}</f:facet>
@@ -67,13 +66,6 @@
             <p:message for="remark"/>
             <h:outputText id="remark"/>
             <br/>
-            <p:dialog id="dialogBox" widgetVar="wDialogBox" header="#{msg['app.error']}" closable="false" resizable="false" width="250px">
-                <h:outputText value="#{msg['account.changed']} "/>
-                <h:outputText value="#{msg['try.again']} "/>
-                <br/>
-                <br/>
-                <p:commandButton value="OK" action="#{listAccountPageBean.errorProceed()}"/>
-            </p:dialog>
         </h:form>
     </ui:define>
 
