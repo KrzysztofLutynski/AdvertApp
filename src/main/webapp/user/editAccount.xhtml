@@ -50,13 +50,20 @@
 
                 <p:commandButton value="#{msg['menu.edit']}" action="#{editAccountPageBean.editAccount}" 
                                  onclick="return confirm('#{msg['confirm.box']}');"/>
-                
+
                 <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
 
                 <p:commandButton value="#{msg['button.delete']}" action="#{editAccountPageBean.deleteAccount}"
                                  onclick="return confirm('#{msg['account.delete.confirm']}');" />
-                                
+
             </h:panelGrid>
+            <p:dialog id="dialogBox" widgetVar="wDialogBox" header="#{msg['app.error']}" closable="false" resizable="false" width="250px">
+                <h:outputText value="#{msg['account.changed']} "/>
+                <h:outputText value="#{msg['please.relogin']} "/>
+                <br/>
+                <br/>
+                <p:commandButton value="OK" action="#{listAccountPageBean.errorProceed()}"/>
+            </p:dialog> 
         </h:form>
     </ui:define>
 </ui:composition>

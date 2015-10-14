@@ -7,6 +7,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
@@ -40,7 +41,7 @@ public class AccountFacade extends AbstractFacade<Account> {
         super(Account.class);
     }
 
-    @RolesAllowed({"User","Administrator"})
+    @RolesAllowed({"User", "Administrator"})
     public Account obtainAccountByLogin(String login) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Account> query = cb.createQuery(Account.class);
@@ -74,17 +75,21 @@ public class AccountFacade extends AbstractFacade<Account> {
         try {
             super.edit(entity);
             em.flush();
+        } catch (OptimisticLockException ole) {
+            throw AccountException.createForAccountOptimistickLockEx(entity, ole);
         } catch (PersistenceException pe) {
             throw AccountException.createForNonUniqueEmail(entity, pe);
         }
     }
 
     @Override
-    @RolesAllowed({"User","Administrator"})
+    @RolesAllowed({"User", "Administrator"})
     public void remove(Account entity) throws BaseException {
         try {
             super.remove(entity);
             em.flush();
+        } catch (OptimisticLockException ole) {
+            throw AccountException.createForAccountOptimistickLockEx(entity, ole);
         } catch (PersistenceException pe) {
             throw AccountException.createForAccountUsedByDB(entity, pe);
         }

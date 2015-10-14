@@ -37,7 +37,7 @@ public class AccountSession implements Serializable {
 
     @PostConstruct
     private void construct() {
-        obtainUserAccount();
+        accountUser = obtainUserAccount();
         lastLoginDate = new Date();
     }
 
@@ -74,8 +74,8 @@ public class AccountSession implements Serializable {
         accountEndpoint.delete(account);
     }
 
-    public void obtainUserAccount() {
-        accountUser = accountEndpoint.obtainUserAccount();
+    public Account obtainUserAccount() {
+        return accountEndpoint.obtainUserAccount();
     }
 
     public String resetSession() {

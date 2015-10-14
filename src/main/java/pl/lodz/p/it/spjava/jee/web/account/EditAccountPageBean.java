@@ -33,7 +33,7 @@ public class EditAccountPageBean {
 
     @PostConstruct
     private void init() {
-        account = accountSession.getAccountUser();
+        account = accountSession.obtainUserAccount();
         emailCheck = account.getEmail();
     }
 
@@ -53,10 +53,6 @@ public class EditAccountPageBean {
         return account;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-    
     public String editAccount() {
         try {
             if (account.getPassword().length() < PASS_MIN_CHAR) {
@@ -75,7 +71,7 @@ public class EditAccountPageBean {
             } else {
                 account.setActive(false);
                 account.setVerification(emailVerifManager.getVerifCode());
-                accountSession.setAccountUser(account);
+                accountSession.accountEdit(account);
                 emailVerifManager.sendVerificationEmail(account);
                 accountSession.resetSession();
             }
@@ -83,13 +79,13 @@ public class EditAccountPageBean {
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
             if (ContextUtils.isI18NKeyExist(ex.getMessage())) {
-                ContextUtils.emitI18NMessage("editAccountForm:email", ex.getMessage());
+                    ContextUtils.emitI18NMessage("editAccountForm:remark", ex.getMessage());
             }
+            return null;
         }
-        return null;
     }
-
-    public String deleteAccount(){
+    
+    public String deleteAccount() {
         try {
             accountSession.deleteAccount(account);
             accountSession.resetSession();
@@ -97,7 +93,7 @@ public class EditAccountPageBean {
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
             if (ContextUtils.isI18NKeyExist(ex.getMessage())) {
-                ContextUtils.emitI18NMessage("editAccountForm:remark", ex.getMessage());
+                    ContextUtils.emitI18NMessage("editAccountForm:remark", ex.getMessage());
             }
             return null;
         }

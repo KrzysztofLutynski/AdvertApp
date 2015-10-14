@@ -1,5 +1,6 @@
 package pl.lodz.p.it.spjava.jee.exception;
 
+import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceException;
 import pl.lodz.p.it.spjava.jee.model.Account;
 
@@ -11,6 +12,7 @@ public class AccountException extends BaseException {
 
     public final static String KEY_EMAIL_UNIQUE_VIOLATION = "email.used";
     public final static String KEY_ACCOUNT_USED_VIOLATION = "account.used";
+    public final static String KEY_ACCOUNT_CHANGED_VIOLATION = "account.changed";
     
     public AccountException() {
     }
@@ -49,5 +51,10 @@ public class AccountException extends BaseException {
         return ae;
     }
     
+    public static AccountException createForAccountOptimistickLockEx(Account account, OptimisticLockException ole){
+        AccountException ae = new AccountException(KEY_ACCOUNT_CHANGED_VIOLATION, ole);
+        ae.account=account;
+        return ae;
+    }
     
 }

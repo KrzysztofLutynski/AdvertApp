@@ -1,5 +1,6 @@
 package pl.lodz.p.it.spjava.jee.web.account;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +19,7 @@ import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
  */
 @Named("listAccountPageBean")
 @RequestScoped
-public class ListAccountPageBean {
+public class ListAccountPageBean implements Serializable {
 
     private static final Logger LOGGER = Logger.getLogger(ListAccountPageBean.class.getName());
 
@@ -34,33 +35,21 @@ public class ListAccountPageBean {
         typeList = accountSession.obtainTypes();
         accountList = accountSession.obtainAccounts();
     }
-    
+
     private Account account;
     private List<Account> accountList;
     private List<Type> typeList;
-
-    public List<Account> getAccountList() {
-        return accountList;
-    }
-
-    public void setAccountList(List<Account> accountList) {
-        this.accountList = accountList;
-    }
-
-    public List<Type> getTypeList() {
-        return typeList;
-    }
-
-    public void setTypeList(List<Type> typeList) {
-        this.typeList = typeList;
-    }
 
     public Account getAccount() {
         return account;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public List<Account> getAccountList() {
+        return accountList;
+    }
+
+    public List<Type> getTypeList() {
+        return typeList;
     }
 
     public String editAccount(Account account) {
@@ -69,11 +58,11 @@ public class ListAccountPageBean {
             return "listAccount";
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
-//            if (ContextUtils.isI18NKeyExist(ex.getMessage())) {
-//                ContextUtils.emitI18NMessage("editAccountForm:email", ex.getMessage());
-//            }
+            if (ContextUtils.isI18NKeyExist(ex.getMessage())) {
+                    ContextUtils.emitI18NMessage("accountListForm:remark", ex.getMessage());
+            }
+            return null;
         }
-        return null;
     }
 
     public String deleteAccount(Account account) {
@@ -83,7 +72,7 @@ public class ListAccountPageBean {
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
             if (ContextUtils.isI18NKeyExist(ex.getMessage())) {
-                ContextUtils.emitI18NMessage("accountListForm:remark", ex.getMessage());
+                    ContextUtils.emitI18NMessage("accountListForm:remark", ex.getMessage());
             }
             return null;
         }
