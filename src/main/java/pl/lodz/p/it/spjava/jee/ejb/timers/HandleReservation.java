@@ -48,8 +48,8 @@ public class HandleReservation {
         expiredReservedAdvertsList = advertEndpoint.obtainExpiredReservedAdverts(calFrom.getTime(), calUntil.getTime());
         for (Advert advert : expiredReservedAdvertsList) {
             try {
-                sendDeleteMessage(advert);
                 advertEndpoint.deleteAdvert(advert);
+                sendDeleteMessage(advert);
             } catch (BaseException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }

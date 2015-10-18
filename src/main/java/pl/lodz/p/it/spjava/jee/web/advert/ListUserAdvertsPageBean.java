@@ -12,6 +12,7 @@ import pl.lodz.p.it.spjava.jee.model.Account;
 import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.model.Status;
 import pl.lodz.p.it.spjava.jee.web.account.AccountSession;
+import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
 /**
  *
@@ -82,9 +83,15 @@ public class ListUserAdvertsPageBean {
         return "editAdvert";
     }
 
-    public String deleteAdvert(Advert advert) throws BaseException {
-        advertSession.deleteAdvert(advert);
-        return "listUserAdverts";
+    public String deleteAdvert(Advert advert) {
+        try {
+            advertSession.deleteAdvert(advert);
+            return "listUserAdverts";
+        } catch (BaseException ex) {
+            LOGGER.log(Level.SEVERE, null, ex);
+            ContextUtils.dialogBox();
+            return null;
+        }
     }
 
     public String viewAdvert(Advert advert) {
@@ -108,8 +115,9 @@ public class ListUserAdvertsPageBean {
             return "listUserAdverts";
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
+            ContextUtils.dialogBox();
+            return null;
         }
-        return null;
     }
 
 }

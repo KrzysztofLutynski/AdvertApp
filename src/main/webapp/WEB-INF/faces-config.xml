@@ -72,6 +72,11 @@
             <to-view-id>/main/listSearchedAdverts.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>dialogBox</from-outcome>
+            <to-view-id>/error/dialogError.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
             
             
     </navigation-rule>

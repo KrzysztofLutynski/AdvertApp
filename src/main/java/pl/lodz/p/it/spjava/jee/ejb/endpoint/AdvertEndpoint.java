@@ -10,6 +10,7 @@ import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
+import javax.persistence.OptimisticLockException;
 import pl.lodz.p.it.spjava.jee.ejb.facade.AdvertFacade;
 import pl.lodz.p.it.spjava.jee.ejb.interceptors.Log;
 import pl.lodz.p.it.spjava.jee.exception.BaseException;
@@ -30,7 +31,7 @@ public class AdvertEndpoint extends AbstractEndpoint implements SessionSynchroni
     @Inject
     private AdvertFacade advertFacade;
 
-    public void create(final Advert advert) throws BaseException {
+    public void create(final Advert advert) {
         advertFacade.create(advert);
     }
     

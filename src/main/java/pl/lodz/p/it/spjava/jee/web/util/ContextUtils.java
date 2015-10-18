@@ -2,10 +2,13 @@ package pl.lodz.p.it.spjava.jee.web.util;
 
 import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import org.primefaces.component.dialog.Dialog;
 import org.primefaces.context.RequestContext;
+import pl.lodz.p.it.spjava.jee.exception.BaseException;
 
 /**
  *
@@ -28,7 +31,7 @@ public class ContextUtils {
     public static ExternalContext getContext() {
         return FacesContext.getCurrentInstance().getExternalContext();
     }
-    
+
     public static String getContextParameter(String paramName) {
         return getContext().getInitParameter(paramName);
     }
@@ -62,8 +65,18 @@ public class ContextUtils {
         return msg.getDetail();
     }
 
-    public static void dialogBox(String script) {
+    public static void dialogShow(BaseException be) {
+        FacesMessage msg = new FacesMessage();
+        msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+        msg.setSummary(ContextUtils.i18NMessage(be.getMessage()));
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute(script);
+        context.showMessageInDialog(msg);
     }
+    
+    public static void dialogBox() {
+        RequestContext context = RequestContext.getCurrentInstance();
+//        context.execute("PF('dialogBox').show();");
+        context.openDialog("dialogBox");
+    }
+    
 }

@@ -1,6 +1,7 @@
 package pl.lodz.p.it.spjava.jee.web.advert;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -8,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import pl.lodz.p.it.spjava.jee.exception.BaseException;
 import pl.lodz.p.it.spjava.jee.model.Advert;
+import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
 /**
  *
@@ -49,8 +51,8 @@ public class ListSearchedAdvertsPageBean {
     public void setAdvertList(List<Advert> advertList) {
         this.advertList = advertList;
     }
-    
-    public boolean renderTable(){
+
+    public boolean renderTable() {
         return !advertList.isEmpty();
     }
 
@@ -59,9 +61,15 @@ public class ListSearchedAdvertsPageBean {
         return "viewAdvert";
     }
 
-    public String deleteAdvert(Advert advert) throws BaseException {
+    public String deleteAdvert(Advert advert) {
+        try {
 //        TODO: stworzyć motodę wysyłającą e-mail z informacją o usunięciu ogłoszenia przez administratora
-        advertSession.deleteAdvert(advert);
-        return "listSearchedAdverts"+ "?faces-redirect=true";
+            advertSession.deleteAdvert(advert);
+            return "listSearchedAdverts" + "?faces-redirect=true";
+        } catch (BaseException ex) {
+            LOGGER.log(Level.SEVERE, null, ex);
+            ContextUtils.dialogBox();
+            return null;
+        }
     }
 }

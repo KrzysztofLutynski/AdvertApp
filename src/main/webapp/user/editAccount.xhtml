@@ -57,13 +57,6 @@
                                  onclick="return confirm('#{msg['account.delete.confirm']}');" />
 
             </h:panelGrid>
-            <p:dialog id="dialogBox" widgetVar="wDialogBox" header="#{msg['app.error']}" closable="false" resizable="false" width="250px">
-                <h:outputText value="#{msg['account.changed']} "/>
-                <h:outputText value="#{msg['please.relogin']} "/>
-                <br/>
-                <br/>
-                <p:commandButton value="OK" action="#{listAccountPageBean.errorProceed()}"/>
-            </p:dialog> 
         </h:form>
     </ui:define>
 </ui:composition>

@@ -33,9 +33,9 @@
                                  onclick="return confirm('#{msg['contact.seller.confirm']}');"/>
 
                 <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" 
-                                 onclick="if(#{contactSellerPageBean.reserveFlag}) return confirm('#{msg['contact.seller.cancel.confirm']}');"/>
+                                 onclick="if (#{contactSellerPageBean.reserveFlag})
+                                             return confirm('#{msg['contact.seller.cancel.confirm']}');"/>
             </h:panelGrid>
-
         </h:form>
 
     </ui:define>

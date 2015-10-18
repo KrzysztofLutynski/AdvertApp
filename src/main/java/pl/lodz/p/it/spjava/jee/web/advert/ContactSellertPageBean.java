@@ -129,13 +129,13 @@ public class ContactSellertPageBean implements Serializable {
 
     public void reserveAdvert() {
         try {
-                advert.setAdvertReserveDate(new Date());
-                advert.setStatus(statusList.get(STATUS_RESERVED));
-                advert.SetBuyerAccount(accountSession.getAccountUser());
-                advertSession.editAdvert(advert);
+            advert.setAdvertReserveDate(new Date());
+            advert.setStatus(statusList.get(STATUS_RESERVED));
+            advert.SetBuyerAccount(accountSession.getAccountUser());
+            advertSession.editAdvert(advert);
         } catch (BaseException ex) {
-            Logger.getLogger(ViewAdvertPageBean.class.getName()).log(Level.SEVERE, null, ex);
-//            TODO:EMIT message
+            LOGGER.log(Level.SEVERE, null, ex);
+            ContextUtils.dialogBox();
         }
     }
 }

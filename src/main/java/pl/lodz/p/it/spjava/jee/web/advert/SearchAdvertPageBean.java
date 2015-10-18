@@ -75,7 +75,7 @@ public class SearchAdvertPageBean implements Serializable {
 //        TODO: method logic
         advertSession.setSearchValue(searchValue);
 
-        return "listSearchedAdverts" + "?faces-redirect=true";
+        return "listSearchedAdverts";
     }
 
 }

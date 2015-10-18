@@ -1,11 +1,12 @@
 package pl.lodz.p.it.spjava.jee.web.advert;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
 import pl.lodz.p.it.spjava.jee.ejb.endpoint.AdvertEndpoint;
@@ -16,6 +17,7 @@ import pl.lodz.p.it.spjava.jee.model.Account;
 import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.model.Category;
 import pl.lodz.p.it.spjava.jee.model.Status;
+import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
 /**
  *
@@ -94,11 +96,11 @@ public class AdvertSession implements Serializable {
     public List<Advert> obtainSearchedAdverts(Object object) {
         return advertEndpoint.obtainSearchedAdverts(object);
     }
-    
+
     public List<Advert> obtainReservedAdverts(Account account) {
         return advertEndpoint.obtainReservedAdverts(account);
     }
-    
+
     public List<Category> obtainCategory() {
         return categoryEndpoint.obtainCategory();
     }
@@ -107,7 +109,7 @@ public class AdvertSession implements Serializable {
         return statusEndpoint.obtainStatus();
     }
 
-    public void createAdvert(Advert advert) throws BaseException {
+    public void createAdvert(Advert advert) {
         advertEndpoint.create(advert);
     }
 
@@ -118,5 +120,4 @@ public class AdvertSession implements Serializable {
     public void deleteAdvert(Advert advert) throws BaseException {
         advertEndpoint.deleteAdvert(advert);
     }
-
 }

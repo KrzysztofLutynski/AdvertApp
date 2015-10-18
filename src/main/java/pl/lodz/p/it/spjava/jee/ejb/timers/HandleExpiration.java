@@ -47,8 +47,8 @@ public class HandleExpiration {
         expiredAdvertsList = advertEndpoint.obtainExpiredAdverts(cal.getTime(), new Date());
         for (Advert advert : expiredAdvertsList) {
             try {
-                sendDeleteMessage(advert);
                 advertEndpoint.deleteAdvert(advert);
+                sendDeleteMessage(advert);
             } catch (BaseException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }

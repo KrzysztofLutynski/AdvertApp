@@ -99,27 +99,22 @@ public class CreateAdvertPageBean implements Serializable {
     }
 
     public String createAdvert() {
-        try {
-            if (advert.getAdvertExpiryDate() != null && advert.getAdvertExpiryDate().before(new Date())) {
-                ContextUtils.emitI18NMessage("createAdvertForm:dateExpiry", "advert.date.expiry.constraint");
-                return null;
-            }
-            if (advert.getCategory().equals(categoryList.get(CATEGORY_SOCIAL))) {
-                advert.setStatus(statusList.get(STATUS_UNRESERVABLE));
-            } else {
-                advert.setStatus(statusList.get(STATUS_ACTIVE));
-            }
-            advert.setIdAdvert(null);
-            advert.setAdvertAddDate(new Date());
-            advert.setAdvertEditDate(new Date());
-            advert.setAccount(account);
-            advertSession.init();
-            advertSession.createAdvert(advert);
-            return "success";
-        } catch (BaseException ex) {
-            LOGGER.log(Level.SEVERE, null, ex);
+        if (advert.getAdvertExpiryDate() != null && advert.getAdvertExpiryDate().before(new Date())) {
+            ContextUtils.emitI18NMessage("createAdvertForm:dateExpiry", "advert.date.expiry.constraint");
+            return null;
         }
-        return null;
+        if (advert.getCategory().equals(categoryList.get(CATEGORY_SOCIAL))) {
+            advert.setStatus(statusList.get(STATUS_UNRESERVABLE));
+        } else {
+            advert.setStatus(statusList.get(STATUS_ACTIVE));
+        }
+        advert.setIdAdvert(null);
+        advert.setAdvertAddDate(new Date());
+        advert.setAdvertEditDate(new Date());
+        advert.setAccount(account);
+        advertSession.init();
+        advertSession.createAdvert(advert);
+        return "success";
     }
 
 }

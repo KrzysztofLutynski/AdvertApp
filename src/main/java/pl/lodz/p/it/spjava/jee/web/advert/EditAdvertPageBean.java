@@ -18,6 +18,7 @@ import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.model.Category;
 import pl.lodz.p.it.spjava.jee.model.Status;
 import pl.lodz.p.it.spjava.jee.web.account.AccountSession;
+import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
 /**
  *
@@ -110,9 +111,9 @@ public class EditAdvertPageBean implements Serializable {
             return "success";
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
-            
+            ContextUtils.dialogBox();
+            return null;
         }
-        return null;
     }
 
     private Status advertStatus(int idStatus) {

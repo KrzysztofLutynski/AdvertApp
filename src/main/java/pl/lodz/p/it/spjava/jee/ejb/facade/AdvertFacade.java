@@ -8,9 +8,12 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
+import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import pl.lodz.p.it.spjava.jee.ejb.interceptors.Log;
+import pl.lodz.p.it.spjava.jee.exception.AdvertException;
+import pl.lodz.p.it.spjava.jee.exception.BaseException;
 import pl.lodz.p.it.spjava.jee.model.Account;
 import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.model.Category;
@@ -20,7 +23,7 @@ import pl.lodz.p.it.spjava.jee.model.Category;
  * @author Krzysiek
  */
 @Stateless
-@RolesAllowed({"User","Administrator"})
+@RolesAllowed({"User", "Administrator"})
 @Log
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class AdvertFacade extends AbstractFacade<Advert> {
@@ -88,4 +91,28 @@ public class AdvertFacade extends AbstractFacade<Advert> {
         tq.setParameter("y", until);
         return tq.getResultList();
     }
+
+    @Override
+    public void edit(Advert entity) throws BaseException {
+        try {
+            getEntityManager().merge(entity);
+        } catch (OptimisticLockException ole) {
+            throw AdvertException.createForOptimisticLockException(entity, ole);
+        }
+    }
+
+    @Override
+    public void remove(Advert entity) throws BaseException {
+        try {
+            getEntityManager().remove(getEntityManager().merge(entity));
+        } catch (OptimisticLockException ole) {
+            throw AdvertException.createForOptimisticLockException(entity, ole);
+        }
+    }
+
+    @Override
+    public void create(Advert entity) {
+        getEntityManager().persist(entity);
+    }
+
 }
