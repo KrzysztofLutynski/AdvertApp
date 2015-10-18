@@ -12,7 +12,6 @@ import javax.inject.Named;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import pl.lodz.p.it.spjava.jee.ejb.managers.EmailManager;
-import pl.lodz.p.it.spjava.jee.exception.BaseException;
 import pl.lodz.p.it.spjava.jee.model.Account;
 import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.model.Status;
