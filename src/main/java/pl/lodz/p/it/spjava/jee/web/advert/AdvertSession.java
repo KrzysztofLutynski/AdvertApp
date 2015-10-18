@@ -113,11 +113,11 @@ public class AdvertSession implements Serializable {
         advertEndpoint.create(advert);
     }
 
-    public void editAdvert(Advert advert) throws BaseException {
+    public void editAdvert(Advert advert) {
         advertEndpoint.editAdvert(advert);
     }
 
-    public void deleteAdvert(Advert advert) throws BaseException {
+    public void deleteAdvert(Advert advert) {
         advertEndpoint.deleteAdvert(advert);
     }
 }

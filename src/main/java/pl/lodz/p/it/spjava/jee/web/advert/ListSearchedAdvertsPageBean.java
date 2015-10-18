@@ -62,14 +62,8 @@ public class ListSearchedAdvertsPageBean {
     }
 
     public String deleteAdvert(Advert advert) {
-        try {
 //        TODO: stworzyć motodę wysyłającą e-mail z informacją o usunięciu ogłoszenia przez administratora
-            advertSession.deleteAdvert(advert);
-            return "listSearchedAdverts" + "?faces-redirect=true";
-        } catch (BaseException ex) {
-            LOGGER.log(Level.SEVERE, null, ex);
-            ContextUtils.dialogBox();
-            return null;
-        }
+        advertSession.deleteAdvert(advert);
+        return "listSearchedAdverts";
     }
 }

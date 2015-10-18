@@ -43,7 +43,7 @@ public class ContactSellertPageBean implements Serializable {
 
     @PostConstruct
     private void init() {
-        statusList=advertSession.obtainStatus();
+        statusList = advertSession.obtainStatus();
         account = accountSession.getAccountUser();
         advert = advertSession.getViewAdvert();
         reserveFlag = advertSession.isReserveFlag();
@@ -107,14 +107,14 @@ public class ContactSellertPageBean implements Serializable {
         if (reserveFlag) {
             reserveAdvert();
         }
-        String subject = ContextUtils.i18NMessageMail("contact.seller.subject") + advert.getTitle();
-        String toAddress = advert.getAccount().getEmail();
-        String preMsg = ContextUtils.i18NMessageMail("contact.seller.pre.msg") + " " + account.getFirstName() + " " + account.getLastName();
-        String postMsg = ContextUtils.i18NMessageMail("contact.seller.post.msg") + " " + account.getEmail();
-        StringBuilder sb = new StringBuilder();
-        sb.append(preMsg).append(System.lineSeparator()).append(System.lineSeparator()).append(msg).
-                append(System.lineSeparator()).append(System.lineSeparator()).append(postMsg);
         try {
+            String subject = ContextUtils.i18NMessageMail("contact.seller.subject") + advert.getTitle();
+            String toAddress = advert.getAccount().getEmail();
+            String preMsg = ContextUtils.i18NMessageMail("contact.seller.pre.msg") + " " + account.getFirstName() + " " + account.getLastName();
+            String postMsg = ContextUtils.i18NMessageMail("contact.seller.post.msg") + " " + account.getEmail();
+            StringBuilder sb = new StringBuilder();
+            sb.append(preMsg).append(System.lineSeparator()).append(System.lineSeparator()).append(msg).
+                    append(System.lineSeparator()).append(System.lineSeparator()).append(postMsg);
             emailManager.sendEmail(toAddress, subject, sb.toString());
             return "success";
         } catch (AddressException aex) {
@@ -128,14 +128,9 @@ public class ContactSellertPageBean implements Serializable {
     }
 
     public void reserveAdvert() {
-        try {
-            advert.setAdvertReserveDate(new Date());
-            advert.setStatus(statusList.get(STATUS_RESERVED));
-            advert.SetBuyerAccount(accountSession.getAccountUser());
-            advertSession.editAdvert(advert);
-        } catch (BaseException ex) {
-            LOGGER.log(Level.SEVERE, null, ex);
-            ContextUtils.dialogBox();
-        }
+        advert.setAdvertReserveDate(new Date());
+        advert.setStatus(statusList.get(STATUS_RESERVED));
+        advert.SetBuyerAccount(accountSession.getAccountUser());
+        advertSession.editAdvert(advert);
     }
 }

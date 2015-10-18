@@ -10,7 +10,6 @@ import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
-import javax.persistence.OptimisticLockException;
 import pl.lodz.p.it.spjava.jee.ejb.facade.AdvertFacade;
 import pl.lodz.p.it.spjava.jee.ejb.interceptors.Log;
 import pl.lodz.p.it.spjava.jee.exception.BaseException;
@@ -58,12 +57,12 @@ public class AdvertEndpoint extends AbstractEndpoint implements SessionSynchroni
         return advertFacade.obtainExpiredReservedAdverts(from, until);
     }
     
-    public void editAdvert(final Advert advert) throws BaseException{
+    public void editAdvert(final Advert advert){
         advertFacade.edit(advert);
     }
     
     @RolesAllowed({"User","Administrator","System"})
-    public void deleteAdvert (final Advert advert) throws BaseException{
+    public void deleteAdvert (final Advert advert){
         advertFacade.remove(advert);
     }
 

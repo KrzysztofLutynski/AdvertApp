@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -12,13 +11,11 @@ import javax.inject.Named;
 import org.omnifaces.cdi.ViewScoped;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
-import pl.lodz.p.it.spjava.jee.exception.BaseException;
 import pl.lodz.p.it.spjava.jee.model.Account;
 import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.model.Category;
 import pl.lodz.p.it.spjava.jee.model.Status;
 import pl.lodz.p.it.spjava.jee.web.account.AccountSession;
-import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
 /**
  *
@@ -92,7 +89,7 @@ public class EditAdvertPageBean implements Serializable {
         byte[] pictureByte = picture.getContents();
         advert.setPicture(pictureByte);
     }
-    
+
     public Date maxExpiryDate() {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.MONTH, 1);
@@ -100,26 +97,13 @@ public class EditAdvertPageBean implements Serializable {
     }
 
     public String editAdvert() {
-        try {
-            if (advert.getCategory().equals(categoryList.get(CATEGORY_SOCIAL))) {
-                advert.setStatus(advertStatus(STATUS_UNRESERVABLE));
-            } else {
-                advert.setStatus(advertStatus(STATUS_ACTIVE));
-            }
-            advert.setAdvertEditDate(new Date());
-            advertSession.editAdvert(advert);
-            return "success";
-        } catch (BaseException ex) {
-            LOGGER.log(Level.SEVERE, null, ex);
-            ContextUtils.dialogBox();
-            return null;
+        if (advert.getCategory().equals(categoryList.get(CATEGORY_SOCIAL))) {
+            advert.setStatus(statusList.get(STATUS_UNRESERVABLE));
+        } else {
+            advert.setStatus(statusList.get(STATUS_ACTIVE));
         }
+        advert.setAdvertEditDate(new Date());
+        advertSession.editAdvert(advert);
+        return "success";
     }
-
-    private Status advertStatus(int idStatus) {
-        return statusList.get(idStatus);
-    }
-
-    
-    
 }

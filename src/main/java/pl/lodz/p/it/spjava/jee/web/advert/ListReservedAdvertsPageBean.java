@@ -79,16 +79,10 @@ public class ListReservedAdvertsPageBean {
     }
 
     public String quitReserv(Advert advert) {
-        try {
             advert.SetBuyerAccount(null);
             advert.setAdvertReserveDate(null);
             advert.setStatus(statusList.get(STATUS_ACTIVE));
             advertSession.editAdvert(advert);
             return "listReservedAdverts";
-        } catch (BaseException ex) {
-            LOGGER.log(Level.SEVERE, null, ex);
-            ContextUtils.dialogBox();
-            return null;
         }
     }
-}
