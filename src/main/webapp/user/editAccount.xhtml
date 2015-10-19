@@ -27,7 +27,7 @@
 
                 <p:outputLabel value="#{msg['registration.email']}:" for="email" />         
                 <p:inputText id="email" value="#{editAccountPageBean.account.email}" title="#{msg['registration.email']}"
-                             onclick="return confirm('#{msg['email.change.instruction']}');"/>
+                             onclick="return alert('#{msg['email.change.instruction']}');"/>
                 <p:message for="email"  />
 
 
