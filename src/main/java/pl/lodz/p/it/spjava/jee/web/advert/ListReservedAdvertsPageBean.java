@@ -12,7 +12,6 @@ import pl.lodz.p.it.spjava.jee.model.Account;
 import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.model.Status;
 import pl.lodz.p.it.spjava.jee.web.account.AccountSession;
-import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
 /**
  *
@@ -60,7 +59,7 @@ public class ListReservedAdvertsPageBean {
     public void setAdvertList(List<Advert> advertList) {
         this.advertList = advertList;
     }
-    
+
     public List<Status> getStatusList() {
         return statusList;
     }
@@ -68,8 +67,8 @@ public class ListReservedAdvertsPageBean {
     public void setStatusList(List<Status> statusList) {
         this.statusList = statusList;
     }
-    
-    public boolean renderTable(){
+
+    public boolean renderTable() {
         return !advertList.isEmpty();
     }
 
@@ -79,10 +78,15 @@ public class ListReservedAdvertsPageBean {
     }
 
     public String quitReserv(Advert advert) {
+        try {
             advert.SetBuyerAccount(null);
             advert.setAdvertReserveDate(null);
             advert.setStatus(statusList.get(STATUS_ACTIVE));
             advertSession.editAdvert(advert);
             return "listReservedAdverts";
+        } catch (BaseException be) {
+            LOGGER.log(Level.SEVERE, null, be);
+            return "writeError";
         }
     }
+}

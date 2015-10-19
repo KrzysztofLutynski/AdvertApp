@@ -84,8 +84,13 @@ public class ListUserAdvertsPageBean {
     }
 
     public String deleteAdvert(Advert advert) {
-        advertSession.deleteAdvert(advert);
-        return "listUserAdverts";
+        try {
+            advertSession.deleteAdvert(advert);
+            return "listUserAdverts";
+        } catch (BaseException be) {
+            LOGGER.log(Level.SEVERE, null, be);
+            return "writeError";
+        }
     }
 
     public String viewAdvert(Advert advert) {
@@ -101,11 +106,15 @@ public class ListUserAdvertsPageBean {
     }
 
     public String quitReserv(Advert advert) {
-        advert.SetBuyerAccount(null);
-        advert.setAdvertReserveDate(null);
-        advert.setStatus(statusList.get(STATUS_ACTIVE));
-        advertSession.editAdvert(advert);
-        return "listUserAdverts";
+        try {
+            advert.SetBuyerAccount(null);
+            advert.setAdvertReserveDate(null);
+            advert.setStatus(statusList.get(STATUS_ACTIVE));
+            advertSession.editAdvert(advert);
+            return "listUserAdverts";
+        } catch (BaseException be) {
+            LOGGER.log(Level.SEVERE, null, be);
+            return "writeError";
+        }
     }
-
 }

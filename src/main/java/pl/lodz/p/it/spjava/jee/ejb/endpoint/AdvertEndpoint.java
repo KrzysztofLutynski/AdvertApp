@@ -57,12 +57,12 @@ public class AdvertEndpoint extends AbstractEndpoint implements SessionSynchroni
         return advertFacade.obtainExpiredReservedAdverts(from, until);
     }
     
-    public void editAdvert(final Advert advert){
+    public void editAdvert(final Advert advert) throws BaseException{
         advertFacade.edit(advert);
     }
     
     @RolesAllowed({"User","Administrator","System"})
-    public void deleteAdvert (final Advert advert){
+    public void deleteAdvert (final Advert advert) throws BaseException{
         advertFacade.remove(advert);
     }
 

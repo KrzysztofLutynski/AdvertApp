@@ -73,8 +73,8 @@
             <redirect/>
         </navigation-case>
         <navigation-case>
-            <from-outcome>dialogBox</from-outcome>
-            <to-view-id>/error/dialogError.xhtml</to-view-id>
+            <from-outcome>writeError</from-outcome>
+            <to-view-id>/error/writeError.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
             

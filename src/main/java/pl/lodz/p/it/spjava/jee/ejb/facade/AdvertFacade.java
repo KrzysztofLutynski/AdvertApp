@@ -93,13 +93,22 @@ public class AdvertFacade extends AbstractFacade<Advert> {
     }
 
     @Override
-    public void edit(Advert entity) {
-        getEntityManager().merge(entity);
+    public void edit(Advert entity) throws BaseException {
+        try {
+            getEntityManager().merge(entity);
+        } catch (OptimisticLockException ole) {
+            throw AdvertException.createForOptimisticLockException(entity, ole);
+        }
     }
 
     @Override
-    public void remove(Advert entity) {
-        getEntityManager().remove(getEntityManager().merge(entity));
+    @RolesAllowed({"User", "Administrator", "System"})
+    public void remove(Advert entity) throws BaseException {
+        try {
+            getEntityManager().remove(getEntityManager().merge(entity));
+        } catch (OptimisticLockException ole) {
+            throw AdvertException.createForOptimisticLockException(entity, ole);
+        }
     }
 
     @Override

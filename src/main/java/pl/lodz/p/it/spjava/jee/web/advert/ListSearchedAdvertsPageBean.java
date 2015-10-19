@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import pl.lodz.p.it.spjava.jee.exception.BaseException;
 import pl.lodz.p.it.spjava.jee.model.Advert;
-import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
 /**
  *
@@ -63,7 +62,12 @@ public class ListSearchedAdvertsPageBean {
 
     public String deleteAdvert(Advert advert) {
 //        TODO: stworzyć motodę wysyłającą e-mail z informacją o usunięciu ogłoszenia przez administratora
-        advertSession.deleteAdvert(advert);
-        return "listSearchedAdverts";
+        try {
+            advertSession.deleteAdvert(advert);
+            return "listSearchedAdverts";
+        } catch (BaseException be) {
+            LOGGER.log(Level.SEVERE, null, be);
+            return "writeError";
+        }
     }
 }

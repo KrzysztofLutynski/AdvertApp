@@ -12,6 +12,7 @@ import javax.inject.Named;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import pl.lodz.p.it.spjava.jee.ejb.managers.EmailManager;
+import pl.lodz.p.it.spjava.jee.exception.BaseException;
 import pl.lodz.p.it.spjava.jee.model.Account;
 import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.model.Status;
@@ -99,14 +100,14 @@ public class ContactSellertPageBean implements Serializable {
     }
 
     public String send() {
-        if (msg == null) {
-            ContextUtils.emitI18NMessage("contactSellerForm:body", "field.required");
-            return null;
-        }
-        if (reserveFlag) {
-            reserveAdvert();
-        }
         try {
+            if (msg == null) {
+                ContextUtils.emitI18NMessage("contactSellerForm:body", "field.required");
+                return null;
+            }
+            if (reserveFlag) {
+                reserveAdvert();
+            }
             String subject = ContextUtils.i18NMessageMail("contact.seller.subject") + advert.getTitle();
             String toAddress = advert.getAccount().getEmail();
             String preMsg = ContextUtils.i18NMessageMail("contact.seller.pre.msg") + " " + account.getFirstName() + " " + account.getLastName();
@@ -116,6 +117,9 @@ public class ContactSellertPageBean implements Serializable {
                     append(System.lineSeparator()).append(System.lineSeparator()).append(postMsg);
             emailManager.sendEmail(toAddress, subject, sb.toString());
             return "success";
+        } catch (BaseException be) {
+            LOGGER.log(Level.SEVERE, null, be);
+            return "writeError";
         } catch (AddressException aex) {
             LOGGER.log(Level.SEVERE, null, aex);
 //            TODO:EMIT message
@@ -123,10 +127,11 @@ public class ContactSellertPageBean implements Serializable {
             LOGGER.log(Level.SEVERE, null, mex);
 //            TODO:EMIT message
         }
+
         return null;
     }
 
-    public void reserveAdvert() {
+    public void reserveAdvert() throws BaseException {
         advert.setAdvertReserveDate(new Date());
         advert.setStatus(statusList.get(STATUS_RESERVED));
         advert.SetBuyerAccount(accountSession.getAccountUser());

@@ -13,6 +13,7 @@ import javax.mail.MessagingException;
 import pl.lodz.p.it.spjava.jee.ejb.endpoint.AdvertEndpoint;
 import pl.lodz.p.it.spjava.jee.ejb.interceptors.Log;
 import pl.lodz.p.it.spjava.jee.ejb.managers.EmailManager;
+import pl.lodz.p.it.spjava.jee.exception.BaseException;
 import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
@@ -40,14 +41,18 @@ public class HandleReservation {
     private List<Advert> preExpiredReservedAdvertsList;
 
     public void deleteExpiredReservedAdverts() {
-        Calendar calFrom = Calendar.getInstance();
-        calFrom.add(Calendar.DAY_OF_MONTH, -30);
-        Calendar calUntil = Calendar.getInstance();
-        calUntil.add(Calendar.DAY_OF_MONTH, -10);
-        expiredReservedAdvertsList = advertEndpoint.obtainExpiredReservedAdverts(calFrom.getTime(), calUntil.getTime());
-        for (Advert advert : expiredReservedAdvertsList) {
-            advertEndpoint.deleteAdvert(advert);
-            sendDeleteMessage(advert);
+        try {
+            Calendar calFrom = Calendar.getInstance();
+            calFrom.add(Calendar.DAY_OF_MONTH, -30);
+            Calendar calUntil = Calendar.getInstance();
+            calUntil.add(Calendar.DAY_OF_MONTH, -10);
+            expiredReservedAdvertsList = advertEndpoint.obtainExpiredReservedAdverts(calFrom.getTime(), calUntil.getTime());
+            for (Advert advert : expiredReservedAdvertsList) {
+                advertEndpoint.deleteAdvert(advert);
+                sendDeleteMessage(advert);
+            }
+        } catch (BaseException be) {
+            LOGGER.log(Level.SEVERE, null, be);
         }
     }
 

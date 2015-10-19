@@ -6,9 +6,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.OptimisticLockException;
 import pl.lodz.p.it.spjava.jee.ejb.endpoint.AdvertEndpoint;
 import pl.lodz.p.it.spjava.jee.ejb.endpoint.CategoryEndpoint;
 import pl.lodz.p.it.spjava.jee.ejb.endpoint.StatusEndpoint;
@@ -17,7 +17,6 @@ import pl.lodz.p.it.spjava.jee.model.Account;
 import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.model.Category;
 import pl.lodz.p.it.spjava.jee.model.Status;
-import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
 /**
  *
@@ -113,11 +112,11 @@ public class AdvertSession implements Serializable {
         advertEndpoint.create(advert);
     }
 
-    public void editAdvert(Advert advert) {
+    public void editAdvert(Advert advert) throws BaseException {
         advertEndpoint.editAdvert(advert);
     }
 
-    public void deleteAdvert(Advert advert) {
+    public void deleteAdvert(Advert advert) throws BaseException {
         advertEndpoint.deleteAdvert(advert);
     }
 }

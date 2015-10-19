@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -11,6 +12,7 @@ import javax.inject.Named;
 import org.omnifaces.cdi.ViewScoped;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
+import pl.lodz.p.it.spjava.jee.exception.BaseException;
 import pl.lodz.p.it.spjava.jee.model.Account;
 import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.model.Category;
@@ -97,13 +99,19 @@ public class EditAdvertPageBean implements Serializable {
     }
 
     public String editAdvert() {
-        if (advert.getCategory().equals(categoryList.get(CATEGORY_SOCIAL))) {
-            advert.setStatus(statusList.get(STATUS_UNRESERVABLE));
-        } else {
-            advert.setStatus(statusList.get(STATUS_ACTIVE));
+        try {
+            if (advert.getCategory().equals(categoryList.get(CATEGORY_SOCIAL))) {
+                advert.setStatus(statusList.get(STATUS_UNRESERVABLE));
+            } else {
+                advert.setStatus(statusList.get(STATUS_ACTIVE));
+            }
+            advert.setAdvertEditDate(new Date());
+            advertSession.editAdvert(advert);
+            return "success";
+        } catch (BaseException be) {
+            LOGGER.log(Level.SEVERE, null, be);
+            return "writeError";
         }
-        advert.setAdvertEditDate(new Date());
-        advertSession.editAdvert(advert);
-        return "success";
+
     }
 }
