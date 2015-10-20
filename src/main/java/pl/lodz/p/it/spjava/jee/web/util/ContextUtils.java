@@ -38,7 +38,7 @@ public class ContextUtils {
         if (bundlePath == null) {
             return null;
         } else {
-            return ResourceBundle.getBundle(bundlePath);
+            return ResourceBundle.getBundle(bundlePath, FacesContext.getCurrentInstance().getViewRoot().getLocale());
         }
     }
 
@@ -54,7 +54,7 @@ public class ContextUtils {
     }
 
     public static ResourceBundle getMailBundle() {
-        return ResourceBundle.getBundle("i18n.mail");
+        return ResourceBundle.getBundle("i18n.mail", FacesContext.getCurrentInstance().getViewRoot().getLocale());
     }
 
     public static String i18NMessageMail(String key) {

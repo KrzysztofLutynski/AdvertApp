@@ -77,9 +77,5 @@
             <to-view-id>/error/writeError.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
-            
-            
     </navigation-rule>
-        
-    
 </faces-config>
