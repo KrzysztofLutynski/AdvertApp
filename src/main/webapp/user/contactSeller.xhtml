@@ -37,10 +37,10 @@
                                              return confirm('#{msg['contact.seller.cancel.confirm']}');"/>
             </h:panelGrid>
             <p:dialog header="#{msg['app.error']}" widgetVar="dlg" closable="false" 
-                      width="350px" resizable="false" modal="true">
+                      width="450px" resizable="false" modal="true">
                 <p:messages/>
-                <br/><br/>
-                <p:commandButton value="OK" action="start" immediate="true"/>
+                <br/>
+                <p:commandButton value="OK" action="listSearchedAdverts" immediate="true"/>
             </p:dialog>
         </h:form>
 

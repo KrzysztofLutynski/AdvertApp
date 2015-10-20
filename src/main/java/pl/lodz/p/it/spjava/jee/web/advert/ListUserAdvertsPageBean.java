@@ -1,5 +1,6 @@
 package pl.lodz.p.it.spjava.jee.web.advert;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -7,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.omnifaces.cdi.ViewScoped;
 import pl.lodz.p.it.spjava.jee.exception.BaseException;
 import pl.lodz.p.it.spjava.jee.model.Account;
 import pl.lodz.p.it.spjava.jee.model.Advert;
@@ -19,8 +21,8 @@ import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
  * @author Krzysiek
  */
 @Named("listUserAdvertsPageBean")
-@RequestScoped
-public class ListUserAdvertsPageBean {
+@ViewScoped
+public class ListUserAdvertsPageBean implements Serializable {
 
     private static final int STATUS_ACTIVE = 0;
     private static final int STATUS_RESERVED = 2;

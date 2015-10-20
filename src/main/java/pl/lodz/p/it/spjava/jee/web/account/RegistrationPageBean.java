@@ -24,7 +24,7 @@ public class RegistrationPageBean {
 
     private static final int TYPE_USER = 0;
     private static final int PASS_MIN_CHAR = 4;
-    
+
     private static final Logger LOGGER = Logger.getLogger(RegistrationPageBean.class.getName());
 
     public RegistrationPageBean() {
@@ -77,7 +77,7 @@ public class RegistrationPageBean {
             if (ContextUtils.isI18NKeyExist(ex.getMessage())) {
                 ContextUtils.emitI18NMessage("registerForm:email", ex.getMessage());
             }
+            return null;
         }
-        return null;
     }
 }

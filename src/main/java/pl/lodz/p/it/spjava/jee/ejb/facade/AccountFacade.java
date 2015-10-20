@@ -7,6 +7,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
@@ -74,6 +75,8 @@ public class AccountFacade extends AbstractFacade<Account> {
         try {
             super.edit(entity);
             em.flush();
+        }catch (OptimisticLockException ole){
+            throw AccountException.createForAccountChanged(entity, ole);
         } catch (PersistenceException pe) {
             throw AccountException.createForNonUniqueEmail(entity, pe);
         }
@@ -85,6 +88,8 @@ public class AccountFacade extends AbstractFacade<Account> {
         try {
             super.remove(entity);
             em.flush();
+        }catch (OptimisticLockException ole){
+            throw AccountException.createForAccountChanged(entity, ole);
         } catch (PersistenceException pe) {
             throw AccountException.createForAccountUsedByDB(entity, pe);
         }

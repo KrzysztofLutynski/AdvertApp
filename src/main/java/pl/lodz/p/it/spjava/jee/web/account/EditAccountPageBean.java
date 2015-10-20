@@ -1,11 +1,12 @@
 package pl.lodz.p.it.spjava.jee.web.account;
 
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.omnifaces.cdi.ViewScoped;
 import pl.lodz.p.it.spjava.jee.ejb.managers.EmailVerificationManager;
 import pl.lodz.p.it.spjava.jee.exception.BaseException;
 import pl.lodz.p.it.spjava.jee.model.Account;
@@ -17,8 +18,8 @@ import pl.lodz.p.it.spjava.jee.web.util.HashPassGenerator;
  * @author Krzysiek
  */
 @Named("editAccountPageBean")
-@RequestScoped
-public class EditAccountPageBean {
+@ViewScoped
+public class EditAccountPageBean implements Serializable {
 
     private static final int PASS_MIN_CHAR = 4;
     private static final Logger LOGGER = Logger.getLogger(EditAccountPageBean.class.getName());
@@ -78,9 +79,7 @@ public class EditAccountPageBean {
             return "success";
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
-            if (ContextUtils.isI18NKeyExist(ex.getMessage())) {
-                    ContextUtils.emitI18NMessage("editAccountForm:remark", ex.getMessage());
-            }
+            ContextUtils.dialogBox(ex.getMessage());
             return null;
         }
     }
@@ -92,9 +91,7 @@ public class EditAccountPageBean {
             return "success";
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
-            if (ContextUtils.isI18NKeyExist(ex.getMessage())) {
-                    ContextUtils.emitI18NMessage("editAccountForm:remark", ex.getMessage());
-            }
+            ContextUtils.dialogBox(ex.getMessage());
             return null;
         }
     }

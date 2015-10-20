@@ -28,6 +28,7 @@ import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 public class ContactSellertPageBean implements Serializable {
 
     private static final int STATUS_RESERVED = 2;
+    private static final String MAILING_ERROR = "advert.message.error";
 
     private static final Logger LOGGER = Logger.getLogger(ContactSellertPageBean.class.getName());
 
@@ -123,13 +124,13 @@ public class ContactSellertPageBean implements Serializable {
             return null;
         } catch (AddressException aex) {
             LOGGER.log(Level.SEVERE, null, aex);
-//            TODO:EMIT message
+            ContextUtils.dialogBox(MAILING_ERROR);
+            return null;
         } catch (MessagingException mex) {
             LOGGER.log(Level.SEVERE, null, mex);
-//            TODO:EMIT message
+            ContextUtils.dialogBox(MAILING_ERROR);
+            return null;
         }
-
-        return null;
     }
 
     public void reserveAdvert() throws BaseException {

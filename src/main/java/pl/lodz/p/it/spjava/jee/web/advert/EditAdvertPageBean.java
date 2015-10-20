@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.omnifaces.cdi.ViewScoped;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import pl.lodz.p.it.spjava.jee.exception.BaseException;
@@ -25,8 +25,8 @@ import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
  * @author Krzysiek
  */
 @Named("editAdvertPageBean")
-@ViewScoped
-public class EditAdvertPageBean implements Serializable {
+@RequestScoped
+public class EditAdvertPageBean {
 
     private static final int CATEGORY_SOCIAL = 0;
     private static final int STATUS_ACTIVE = 0;

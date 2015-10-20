@@ -41,9 +41,9 @@
                             required="true" requiredMessage="#{msg['field.required']}!"/>
                 <p:message for="passwordCheck"/>
                 <br/><br/>
-                <p:message for="remark"/>
-                <h:outputText id="remark"/>
-                <br/>
+                <!--                <p:message for="remark"/>
+                                <h:outputText id="remark"/>
+                                <br/>-->
             </h:panelGrid>
 
             <h:panelGrid class="center"  columns="3" >
@@ -57,6 +57,12 @@
                                  onclick="return confirm('#{msg['account.delete.confirm']}');" />
 
             </h:panelGrid>
+            <p:dialog header="#{msg['app.error']}" widgetVar="dlg" closable="false" 
+                      width="450px" resizable="false" modal="true">
+                <p:messages/>
+                <br/>
+                <p:commandButton value="OK" action="#{accountSession.resetSession()}" immediate="true"/>
+            </p:dialog>
         </h:form>
     </ui:define>
 </ui:composition>
