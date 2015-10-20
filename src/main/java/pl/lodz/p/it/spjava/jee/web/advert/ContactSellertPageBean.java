@@ -119,7 +119,8 @@ public class ContactSellertPageBean implements Serializable {
             return "success";
         } catch (BaseException be) {
             LOGGER.log(Level.SEVERE, null, be);
-            return "writeError";
+            ContextUtils.dialogBox(be.getMessage());
+            return null;
         } catch (AddressException aex) {
             LOGGER.log(Level.SEVERE, null, aex);
 //            TODO:EMIT message

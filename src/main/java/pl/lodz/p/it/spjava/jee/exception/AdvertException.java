@@ -9,7 +9,7 @@ import pl.lodz.p.it.spjava.jee.model.Advert;
  */
 public class AdvertException extends BaseException {
 
-    public final static String KEY_ADVERT_EDITION_VIOLATION = "advert.edition.error";
+    public final static String KEY_ADVERT_EDITION_VIOLATION = "advert.edition.error.message";
     
     public AdvertException() {
     }

@@ -87,9 +87,14 @@
                     <h:commandLink value="${msg['button.view']}" action="#{listSearchedAdvertsPageBean.viewAdvert(adv)}"/><br/>
                     <h:commandLink value="${msg['button.delete']}" action="#{listSearchedAdvertsPageBean.deleteAdvert(adv)}" 
                                    onclick="return confirm('#{msg['advert.delete.confirm']}');" rendered="#{request.isUserInRole('Administrator')}"/>
-                    
                 </h:column> 
             </h:dataTable>
+            <p:dialog header="#{msg['app.error']}" widgetVar="dlg" closable="false" 
+                      width="350px" resizable="false" modal="true">
+                <p:messages/>
+                <br/><br/>
+                <p:commandButton value="OK" action="start" immediate="true"/>
+            </p:dialog>
         </h:form>
     </ui:define>
 </ui:composition>

@@ -5,6 +5,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -59,6 +60,11 @@ public class ContextUtils {
     public static String i18NMessageMail(String key) {
         FacesMessage msg = new FacesMessage(ContextUtils.getMailBundle().getString(key));
         return msg.getDetail();
+    }
+
+    public static void dialogBox(String key) {
+        emitI18NMessage(null, key);
+        RequestContext.getCurrentInstance().execute("PF('dlg').show();");;
     }
 
 }

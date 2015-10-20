@@ -12,6 +12,7 @@ import pl.lodz.p.it.spjava.jee.model.Account;
 import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.model.Status;
 import pl.lodz.p.it.spjava.jee.web.account.AccountSession;
+import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
 /**
  *
@@ -86,7 +87,8 @@ public class ListReservedAdvertsPageBean {
             return "listReservedAdverts";
         } catch (BaseException be) {
             LOGGER.log(Level.SEVERE, null, be);
-            return "writeError";
+           ContextUtils.dialogBox(be.getMessage());
+            return null;
         }
     }
 }

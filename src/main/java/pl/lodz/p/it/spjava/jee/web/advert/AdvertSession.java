@@ -2,13 +2,11 @@ package pl.lodz.p.it.spjava.jee.web.advert;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.OptimisticLockException;
 import pl.lodz.p.it.spjava.jee.ejb.endpoint.AdvertEndpoint;
 import pl.lodz.p.it.spjava.jee.ejb.endpoint.CategoryEndpoint;
 import pl.lodz.p.it.spjava.jee.ejb.endpoint.StatusEndpoint;

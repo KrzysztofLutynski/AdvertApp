@@ -90,6 +90,12 @@
                                    rendered="#{listUserAdvertsPageBean.renderReserved(adv)}"/>
                 </h:column> 
             </h:dataTable>
+            <p:dialog header="#{msg['app.error']}" widgetVar="dlg" closable="false" 
+                      width="350px" resizable="false" modal="true">
+                <p:messages/>
+                <br/><br/>
+                <p:commandButton value="OK" action="start" immediate="true"/>
+            </p:dialog>
         </h:form>
     </ui:define>
 </ui:composition>

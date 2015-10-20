@@ -26,9 +26,10 @@
                 <p:outputLabel value="#{msg['advert.title']}:" for="title" />         
                 <p:inputText  size="50" id="title" value="#{editAdvertPageBean.advert.title}"  title="#{msg['advert.title']}"/> 
                 <p:message for="title" />
-                
+
                 <p:outputLabel value="#{msg['advert.price']}:" for="price" />         
-                <p:inputText size="20" id="price" value="#{editAdvertPageBean.advert.price}"  title="#{msg['advert.price']}" converterMessage="#{msg['advert.price.not.valid']}">
+                <p:inputText size="20" id="price" value="#{editAdvertPageBean.advert.price}"  title="#{msg['advert.price']}" 
+                             converterMessage="#{msg['advert.price.not.valid']}">
                     <f:convertNumber type="number" minFractionDigits="2"/>
                 </p:inputText>
                 <p:message for="price" />
@@ -57,9 +58,14 @@
                                  onclick="return confirm('#{msg['confirm.box']}');"/>
 
                 <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
-                
-            </h:panelGrid>
 
+            </h:panelGrid>
+            <p:dialog header="#{msg['app.error']}" widgetVar="dlg" closable="false" 
+                      width="350px" resizable="false" modal="true">
+                <p:messages/>
+                <br/><br/>
+                <p:commandButton value="OK" action="start" immediate="true"/>
+            </p:dialog>
         </h:form>
 
     </ui:define>

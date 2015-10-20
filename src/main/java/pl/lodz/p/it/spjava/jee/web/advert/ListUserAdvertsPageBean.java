@@ -89,7 +89,8 @@ public class ListUserAdvertsPageBean {
             return "listUserAdverts";
         } catch (BaseException be) {
             LOGGER.log(Level.SEVERE, null, be);
-            return "writeError";
+            ContextUtils.dialogBox(be.getMessage());
+            return null;
         }
     }
 
@@ -114,7 +115,8 @@ public class ListUserAdvertsPageBean {
             return "listUserAdverts";
         } catch (BaseException be) {
             LOGGER.log(Level.SEVERE, null, be);
-            return "writeError";
+            ContextUtils.dialogBox(be.getMessage());
+            return null;
         }
     }
 }

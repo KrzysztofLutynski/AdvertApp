@@ -76,13 +76,19 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">${msg['action']}</f:facet>
-                    
+
                     <h:commandLink value="${msg['button.view']}" action="#{listReservedAdvertsPageBean.viewAdvert(adv)}"/><br/>
                     <h:commandLink value="${msg['button.quit.reserv']}" action="#{listReservedAdvertsPageBean.quitReserv(adv)}" 
                                    onclick="return confirm('#{msg['advert.quit.reserv.confirm']}');"/>
-                    
+
                 </h:column> 
             </h:dataTable>
+            <p:dialog header="#{msg['app.error']}" widgetVar="dlg" closable="false" 
+                      width="350px" resizable="false" modal="true">
+                <p:messages/>
+                <br/><br/>
+                <p:commandButton value="OK" action="start" immediate="true"/>
+            </p:dialog>
         </h:form>
     </ui:define>
 </ui:composition>

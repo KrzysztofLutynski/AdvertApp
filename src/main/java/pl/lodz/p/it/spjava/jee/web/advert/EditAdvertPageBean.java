@@ -18,6 +18,7 @@ import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.model.Category;
 import pl.lodz.p.it.spjava.jee.model.Status;
 import pl.lodz.p.it.spjava.jee.web.account.AccountSession;
+import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
 /**
  *
@@ -66,18 +67,6 @@ public class EditAdvertPageBean implements Serializable {
         return categoryList;
     }
 
-    public void setCategoryList(List<Category> categoryList) {
-        this.categoryList = categoryList;
-    }
-
-    public List<Status> getStatusList() {
-        return statusList;
-    }
-
-    public void setStatusList(List<Status> statusList) {
-        this.statusList = statusList;
-    }
-
     public Account getAccount() {
         return account;
     }
@@ -110,8 +99,8 @@ public class EditAdvertPageBean implements Serializable {
             return "success";
         } catch (BaseException be) {
             LOGGER.log(Level.SEVERE, null, be);
-            return "writeError";
+            ContextUtils.dialogBox(be.getMessage());
+            return null;
         }
-
     }
 }

@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import pl.lodz.p.it.spjava.jee.exception.BaseException;
 import pl.lodz.p.it.spjava.jee.model.Advert;
+import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
 /**
  *
@@ -67,7 +68,8 @@ public class ListSearchedAdvertsPageBean {
             return "listSearchedAdverts";
         } catch (BaseException be) {
             LOGGER.log(Level.SEVERE, null, be);
-            return "writeError";
+            ContextUtils.dialogBox(be.getMessage());
+            return null;
         }
     }
 }
