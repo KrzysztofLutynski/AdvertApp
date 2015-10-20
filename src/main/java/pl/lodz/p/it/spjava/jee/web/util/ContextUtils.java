@@ -64,7 +64,7 @@ public class ContextUtils {
 
     public static void dialogBox(String key) {
         emitI18NMessage(null, key);
-        RequestContext.getCurrentInstance().execute("PF('dlg').show();");;
+        RequestContext.getCurrentInstance().execute("PF('dlg').show();");
     }
 
 }

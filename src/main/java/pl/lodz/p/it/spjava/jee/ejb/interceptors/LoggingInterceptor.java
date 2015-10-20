@@ -30,9 +30,12 @@ public class LoggingInterceptor {
             if (params != null) {
                 for (Object param : params) {
                     if (param != null) {
+                        if(param.getClass().getSimpleName().equalsIgnoreCase("string")){
+                        sb.append(" PARAMETER: >STRING<");
+                        }else
                         sb.append(" PARAMETERS: ").append(param.getClass().getName()).append("=").append(param.toString());
                     }else{
-                        sb.append(" PARAMETER: null");
+                        sb.append(" PARAMETER: >NULL<");
                     }
                 }
             }
@@ -41,7 +44,7 @@ public class LoggingInterceptor {
             if(result!=null){
                 sb.append(". OBJECT RETURNED: ").append(result.getClass().getName()).append(" VALUE: ").append(result.toString());
             }else{
-                sb.append(". RETURNED VALUE: null");
+                sb.append(". RETURNED VALUE: >NULL<");
             }
             return result;
         }catch(Exception ex){
