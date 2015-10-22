@@ -31,7 +31,7 @@ public class ListAccountPageBean implements Serializable {
     
     @PostConstruct
     private void init() {
-        account = accountSession.getAccountUser();
+        account = accountSession.getUserAccount();
         typeList = accountSession.obtainTypes();
         accountList = accountSession.obtainAccounts();
     }
@@ -54,7 +54,7 @@ public class ListAccountPageBean implements Serializable {
     
     public String editAccount(Account account) {
         try {
-            accountSession.accountEdit(account);
+            accountSession.editAccount(account);
             return "success";
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);

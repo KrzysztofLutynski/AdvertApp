@@ -67,12 +67,12 @@ public class EditAccountPageBean implements Serializable {
             account.setPassword(HashPassGenerator.generateHash(passwordCheck));
             passwordCheck = "";
             if (account.getEmail().equals(emailCheck)) {
-                accountSession.accountEdit(account);
-                accountSession.obtainUserAccount();
+                accountSession.editAccount(account);
+                accountSession.setUserAccount(accountSession.obtainUserAccount());
             } else {
                 account.setActive(false);
                 account.setVerification(emailVerifManager.getVerifCode());
-                accountSession.accountEdit(account);
+                accountSession.editAccount(account);
                 emailVerifManager.sendVerificationEmail(account);
                 accountSession.resetSession();
             }

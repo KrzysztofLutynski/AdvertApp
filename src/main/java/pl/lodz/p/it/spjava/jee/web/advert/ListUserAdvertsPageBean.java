@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.omnifaces.cdi.ViewScoped;
@@ -40,7 +39,7 @@ public class ListUserAdvertsPageBean implements Serializable {
     @PostConstruct
     private void init() {
         statusList = advertSession.obtainStatus();
-        account = accountSesion.getAccountUser();
+        account = accountSesion.getUserAccount();
         advertList = advertSession.obtainUserAdverts(account);
     }
 
@@ -48,30 +47,10 @@ public class ListUserAdvertsPageBean implements Serializable {
     private List<Advert> advertList;
     private List<Status> statusList;
 
-    public List<Status> getListStatus() {
-        return statusList;
-    }
-
-    public void setListStatus(List<Status> listStatus) {
-        this.statusList = listStatus;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
     public List<Advert> getAdvertList() {
         return advertList;
     }
-
-    public void setAdvertList(List<Advert> advertList) {
-        this.advertList = advertList;
-    }
-
+    
     public boolean renderTable() {
         return !advertList.isEmpty();
     }

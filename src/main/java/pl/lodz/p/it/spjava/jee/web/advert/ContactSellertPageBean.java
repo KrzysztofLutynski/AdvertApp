@@ -45,7 +45,7 @@ public class ContactSellertPageBean implements Serializable {
     @PostConstruct
     private void init() {
         statusList = advertSession.obtainStatus();
-        account = accountSession.getAccountUser();
+        account = accountSession.getUserAccount();
         advert = advertSession.getViewAdvert();
         reserveFlag = advertSession.isReserveFlag();
         if (reserveFlag) {
@@ -60,20 +60,8 @@ public class ContactSellertPageBean implements Serializable {
     private boolean reserveFlag;
     private List<Status> statusList;
 
-    public List<Status> getStatusList() {
-        return statusList;
-    }
-
-    public void setStatusList(List<Status> statusList) {
-        this.statusList = statusList;
-    }
-
     public boolean isReserveFlag() {
         return reserveFlag;
-    }
-
-    public void setReserveFlag(boolean reserveFlag) {
-        this.reserveFlag = reserveFlag;
     }
 
     public String getMsg() {
@@ -82,22 +70,6 @@ public class ContactSellertPageBean implements Serializable {
 
     public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public Advert getAdvert() {
-        return advert;
-    }
-
-    public void setAdvert(Advert advert) {
-        this.advert = advert;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
     }
 
     public String send() {
@@ -136,7 +108,7 @@ public class ContactSellertPageBean implements Serializable {
     public void reserveAdvert() throws BaseException {
         advert.setAdvertReserveDate(new Date());
         advert.setStatus(statusList.get(STATUS_RESERVED));
-        advert.SetBuyerAccount(accountSession.getAccountUser());
+        advert.SetBuyerAccount(accountSession.getUserAccount());
         advertSession.editAdvert(advert);
     }
 }

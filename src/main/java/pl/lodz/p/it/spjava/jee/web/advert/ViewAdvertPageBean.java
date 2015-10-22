@@ -47,18 +47,6 @@ public class ViewAdvertPageBean {
         return advert;
     }
 
-    public void setAdvert(Advert advert) {
-        this.advert = advert;
-    }
-
-    public List<Status> getStatusList() {
-        return statusList;
-    }
-
-    public void setStatusList(List<Status> statusList) {
-        this.statusList = statusList;
-    }
-
     public boolean renderReserved() {
         return advert.getStatus().equals(statusList.get(STATUS_RESERVED));
     }
@@ -66,7 +54,7 @@ public class ViewAdvertPageBean {
     public boolean disableReserve() {
         if (ContextUtils.getContext().getRemoteUser()!=null) {
             return (!advert.getStatus().equals(statusList.get(STATUS_ACTIVE))) 
-                    || advert.getAccount().equals(accountSession.getAccountUser());
+                    || advert.getAccount().equals(accountSession.getUserAccount());
         } else {
             return true;
         }
@@ -74,7 +62,7 @@ public class ViewAdvertPageBean {
 
     public boolean disableContactSeller() {
         if (ContextUtils.getContext().getRemoteUser()!=null) {
-            return advert.getAccount().equals(accountSession.getAccountUser());
+            return advert.getAccount().equals(accountSession.getUserAccount());
         }else{
             return true;
         }

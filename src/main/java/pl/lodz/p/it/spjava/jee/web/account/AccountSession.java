@@ -37,36 +37,36 @@ public class AccountSession implements Serializable {
 
     @PostConstruct
     private void construct() {
-        accountUser = obtainUserAccount();
+        userAccount = obtainUserAccount();
         lastLoginDate = new Date();
     }
 
     @PreDestroy
     private void destroy() {
         try {
-            accountUser.setLastLoginDate(lastLoginDate);
-            accountEndpoint.edit(accountUser);
+            userAccount.setLastLoginDate(lastLoginDate);
+            accountEndpoint.edit(userAccount);
         } catch (BaseException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
         }
     }
 
-    private Account accountUser;
+    private Account userAccount;
     private Date lastLoginDate;
 
-    public Account getAccountUser() {
-        return accountUser;
+    public Account getUserAccount() {
+        return userAccount;
     }
 
-    public void setAccountUser(Account accountUser) {
-        this.accountUser = accountUser;
+    public void setUserAccount(Account userAccount) {
+        this.userAccount = userAccount;
     }
 
-    public void accountRegister(Account account) throws BaseException {
+    public void registerAccount(Account account) throws BaseException {
         accountEndpoint.create(account);
     }
 
-    public void accountEdit(Account account) throws BaseException {
+    public void editAccount(Account account) throws BaseException {
         accountEndpoint.edit(account);
     }
 

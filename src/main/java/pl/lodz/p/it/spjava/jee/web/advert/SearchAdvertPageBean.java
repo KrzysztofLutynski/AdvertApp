@@ -56,12 +56,7 @@ public class SearchAdvertPageBean implements Serializable {
         return categoryList;
     }
 
-    public void setCategoryList(List<Category> categoryList) {
-        this.categoryList = categoryList;
-    }
-
     public String searchAdvert() {
-
 //        TODO: zrobić poprawne wyświetlanie błędów na stronie szukania
         if (searchBy == null) {
             ContextUtils.emitI18NMessage("searchAdvertForm:searchButton", "password.not.matching");
@@ -72,10 +67,7 @@ public class SearchAdvertPageBean implements Serializable {
             ContextUtils.emitI18NMessage("searchAdvertForm:searchButton", "password.not.matching");
             return null;
         }
-//        TODO: method logic
         advertSession.setSearchValue(searchValue);
-
         return "listSearchedAdverts";
     }
-
 }

@@ -37,20 +37,8 @@ public class ListSearchedAdvertsPageBean implements Serializable {
     private List<Advert> advertList;
     private Object searchValue;
 
-    public Object getSearchValue() {
-        return searchValue;
-    }
-
-    public void setSearchValue(Object searchValue) {
-        this.searchValue = searchValue;
-    }
-
     public List<Advert> getAdvertList() {
         return advertList;
-    }
-
-    public void setAdvertList(List<Advert> advertList) {
-        this.advertList = advertList;
     }
 
     public boolean renderTable() {

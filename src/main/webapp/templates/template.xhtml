@@ -23,10 +23,10 @@
             </h2>
             <div class="right">
                 <h:form  rendered="#{not empty request.remoteUser}">
-                    ${msg["app.welcome"]} #{accountSession.accountUser.firstName} #{accountSession.accountUser.lastName}
+                    ${msg["app.welcome"]} #{accountSession.userAccount.firstName} #{accountSession.userAccount.lastName}
                     <br/>
                     ${msg["app.last.access"]}: 
-                    <h:outputText value="#{accountSession.accountUser.lastLoginDate}">
+                    <h:outputText value="#{accountSession.userAccount.lastLoginDate}">
                         <f:convertDateTime  type="both" dateStyle="medium" timeStyle="medium"/>
                     </h:outputText>
                 </h:form>
@@ -75,7 +75,7 @@
             <div class="right">
                 <h:form class="right" rendered="#{not empty request.remoteUser}">
                     ${msg["app.first.access"]}:
-                    <h:outputText value="#{accountSession.accountUser.activationDate}">
+                    <h:outputText value="#{accountSession.userAccount.activationDate}">
                         <f:convertDateTime  type="both" dateStyle="medium" timeStyle="medium"/>
                     </h:outputText>
                 </h:form>

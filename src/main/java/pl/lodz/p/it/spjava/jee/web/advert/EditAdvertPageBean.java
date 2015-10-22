@@ -1,6 +1,5 @@
 package pl.lodz.p.it.spjava.jee.web.advert;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -39,40 +38,24 @@ public class EditAdvertPageBean {
 
     @Inject
     private AdvertSession advertSession;
-    @Inject
-    private AccountSession accountSession;
 
     @PostConstruct
     private void init() {
         categoryList = advertSession.obtainCategory();
         statusList = advertSession.obtainStatus();
-        account = accountSession.getAccountUser();
         advert = advertSession.getEditAdvert();
 
     }
     private List<Category> categoryList;
     private List<Status> statusList;
-    private Account account;
     private Advert advert;
 
     public Advert getAdvert() {
         return advert;
     }
 
-    public void setAdvert(Advert advert) {
-        this.advert = advert;
-    }
-
     public List<Category> getCategoryList() {
         return categoryList;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
     }
 
     public void uploadPicture(FileUploadEvent event) {

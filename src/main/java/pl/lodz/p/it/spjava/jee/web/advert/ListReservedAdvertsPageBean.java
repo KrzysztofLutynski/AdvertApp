@@ -37,7 +37,7 @@ public class ListReservedAdvertsPageBean implements Serializable {
 
     @PostConstruct
     private void init() {
-        account = accountSession.getAccountUser();
+        account = accountSession.getUserAccount();
         advertList = advertSession.obtainReservedAdverts(account);
         statusList = advertSession.obtainStatus();
     }
@@ -46,28 +46,8 @@ public class ListReservedAdvertsPageBean implements Serializable {
     private List<Advert> advertList;
     private Account account;
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
     public List<Advert> getAdvertList() {
         return advertList;
-    }
-
-    public void setAdvertList(List<Advert> advertList) {
-        this.advertList = advertList;
-    }
-
-    public List<Status> getStatusList() {
-        return statusList;
-    }
-
-    public void setStatusList(List<Status> statusList) {
-        this.statusList = statusList;
     }
 
     public boolean renderTable() {

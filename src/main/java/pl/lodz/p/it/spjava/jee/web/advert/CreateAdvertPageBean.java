@@ -44,7 +44,7 @@ public class CreateAdvertPageBean implements Serializable {
     private void init() {
         categoryList = advertSession.obtainCategory();
         statusList = advertSession.obtainStatus();
-        account = accountSession.getAccountUser();
+        account = accountSession.getUserAccount();
         advert = advertSession.getTemplateAdvert();
     }
     private List<Category> categoryList;
@@ -62,26 +62,6 @@ public class CreateAdvertPageBean implements Serializable {
 
     public List<Category> getCategoryList() {
         return categoryList;
-    }
-
-    public void setCategoryList(List<Category> categoryList) {
-        this.categoryList = categoryList;
-    }
-
-    public List<Status> getStatusList() {
-        return statusList;
-    }
-
-    public void setStatusList(List<Status> statusList) {
-        this.statusList = statusList;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
     }
 
     public void uploadPicture(FileUploadEvent event) {
