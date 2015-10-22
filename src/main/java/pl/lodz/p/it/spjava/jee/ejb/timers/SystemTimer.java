@@ -34,7 +34,7 @@ public class SystemTimer {
         he.remindExpiration();
     }
     
-    @Schedule(second = "1", minute = "1", hour = "*/2",persistent = false) //co 2 godziny
+    @Schedule(second = "1", minute = "1", hour = "*/1",persistent = false) //co 2 godziny
 //    @Schedule(second = "1", minute = "*/1", hour = "*",persistent = false) //co 1 minutę
     public void reservWork(){
         hr.deleteExpiredReservedAdverts();

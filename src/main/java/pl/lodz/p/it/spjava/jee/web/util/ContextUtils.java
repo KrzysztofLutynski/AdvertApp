@@ -1,5 +1,6 @@
 package pl.lodz.p.it.spjava.jee.web.util;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -38,7 +39,7 @@ public class ContextUtils {
         if (bundlePath == null) {
             return null;
         } else {
-            return ResourceBundle.getBundle(bundlePath, FacesContext.getCurrentInstance().getViewRoot().getLocale());
+            return ResourceBundle.getBundle(bundlePath, obtainLocale());
         }
     }
 
@@ -54,7 +55,7 @@ public class ContextUtils {
     }
 
     public static ResourceBundle getMailBundle() {
-        return ResourceBundle.getBundle("i18n.mail", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+        return ResourceBundle.getBundle("i18n.mail", obtainLocale());
     }
 
     public static String i18NMessageMail(String key) {
@@ -66,10 +67,19 @@ public class ContextUtils {
         emitI18NMessage(null, key);
         RequestContext.getCurrentInstance().execute("PF('dlg').show();");
     }
-    
-    public static void dialogMessage(String key){
+
+    public static void dialogMessage(String key) {
         FacesMessage msg = new FacesMessage(ContextUtils.getDefaultBundle().getString(key));
         msg.setSeverity(FacesMessage.SEVERITY_WARN);
         RequestContext.getCurrentInstance().showMessageInDialog(msg);
     }
+
+    public static Locale obtainLocale() {
+        if (FacesContext.getCurrentInstance() != null) {
+            return FacesContext.getCurrentInstance().getViewRoot().getLocale();
+        } else {
+            return new Locale("pl");
+        }
+    }
+
 }
