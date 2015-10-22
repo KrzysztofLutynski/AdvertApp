@@ -57,14 +57,12 @@ public class SearchAdvertPageBean implements Serializable {
     }
 
     public String searchAdvert() {
-//        TODO: zrobić poprawne wyświetlanie błędów na stronie szukania
         if (searchBy == null) {
-            ContextUtils.emitI18NMessage("searchAdvertForm:searchButton", "password.not.matching");
+            ContextUtils.dialogMessage("enter.search.by");
             return null;
         }
         if (searchValue == null) {
-//            ContextUtils.emitI18NMessage("searchAdvertForm:" + searchBy, "password.not.matching");
-            ContextUtils.emitI18NMessage("searchAdvertForm:searchButton", "password.not.matching");
+            ContextUtils.dialogMessage("enter.search.value");
             return null;
         }
         advertSession.setSearchValue(searchValue);

@@ -72,10 +72,5 @@
             <to-view-id>/main/listSearchedAdverts.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
-        <navigation-case>
-            <from-outcome>writeError</from-outcome>
-            <to-view-id>/error/writeError.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
     </navigation-rule>
 </faces-config>

@@ -66,5 +66,11 @@ public class ContextUtils {
         emitI18NMessage(null, key);
         RequestContext.getCurrentInstance().execute("PF('dlg').show();");
     }
+    
+    public static void dialogMessage(String key){
+        FacesMessage msg = new FacesMessage(ContextUtils.getDefaultBundle().getString(key));
+        msg.setSeverity(FacesMessage.SEVERITY_WARN);
+        RequestContext.getCurrentInstance().showMessageInDialog(msg);
+    }
 
 }
