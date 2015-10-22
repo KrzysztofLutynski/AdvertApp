@@ -29,7 +29,7 @@ import pl.lodz.p.it.spjava.jee.model.Account_;
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class AccountFacade extends AbstractFacade<Account> {
 
-    @PersistenceContext(unitName = "pl.lodz.p.it.spjava_AdvertApp_war_0.1-SNAPSHOTPU")
+    @PersistenceContext(unitName = "AdvertApp_PU")
     private EntityManager em;
 
     @Override

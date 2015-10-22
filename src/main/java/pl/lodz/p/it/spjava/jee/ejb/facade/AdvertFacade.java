@@ -28,7 +28,7 @@ import pl.lodz.p.it.spjava.jee.model.Category;
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class AdvertFacade extends AbstractFacade<Advert> {
 
-    @PersistenceContext(unitName = "pl.lodz.p.it.spjava_AdvertApp_war_0.1-SNAPSHOTPU")
+    @PersistenceContext(unitName = "AdvertApp_PU")
     private EntityManager em;
 
     @Override

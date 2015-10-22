@@ -16,7 +16,7 @@ import pl.lodz.p.it.spjava.jee.model.Status;
 @Log
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class StatusFacade extends AbstractFacade<Status> {
-    @PersistenceContext(unitName = "pl.lodz.p.it.spjava_AdvertApp_war_0.1-SNAPSHOTPU")
+    @PersistenceContext(unitName = "AdvertApp_PU")
     private EntityManager em;
 
     @Override
