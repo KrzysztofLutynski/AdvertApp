@@ -19,40 +19,31 @@
                 <p:inputText id="firstName" value="#{registrationPageBean.account.firstName}"  title="#{msg['registration.name']}"/>
                 <p:message for="firstName" />
 
-
                 <p:outputLabel value="#{msg['registration.surname']}:" for="lastname"/>         
                 <p:inputText id="lastname" value="#{registrationPageBean.account.lastName}"  title="#{msg['registration.surname']}"/> 
                 <p:message for="lastname" />
-
 
                 <p:outputLabel value="#{msg['registration.email']}:" for="email"/>         
                 <p:inputText id="email" value="#{registrationPageBean.account.email}" title="#{msg['registration.email']}"/> 
                 <p:message for="email"  />
 
-
                 <p:outputLabel value="#{msg['registration.password']}:" for="password"/>         
                 <p:password id="password" value="#{registrationPageBean.account.password}" title="#{msg['registration.password']}" /> 
                 <p:message for="password"  />
-
-
+                
                 <p:outputLabel value="#{msg['registration.passwordCheck']}:" for="passwordCheck"/>         
                 <p:password id="passwordCheck" value="#{registrationPageBean.passwordCheck}" title="#{msg['registration.passwordCheck']}" 
                             required="true" requiredMessage="#{msg['field.required']}!"/>
                 <p:message for="passwordCheck"/>
                 <br/>
+                
             </h:panelGrid>
-
             <h:panelGrid columns="2" >
-
                 <p:commandButton value="#{msg['menu.register']}" action="#{registrationPageBean.register}"
                                  onclick="return confirm('#{msg['registration.instruction']} #{msg['confirm.box']}');"/>
-                                 
-
                 <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
             </h:panelGrid>
-
         </h:form>
-
     </ui:define>
 
 </ui:composition>

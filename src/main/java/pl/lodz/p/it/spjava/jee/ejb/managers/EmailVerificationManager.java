@@ -19,7 +19,7 @@ import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 @RunAs("System")
 @Log
 public class EmailVerificationManager {
-    
+
     private static final Logger LOGGER = Logger.getLogger(EmailVerificationManager.class.getName());
 
     public EmailVerificationManager() {
@@ -27,12 +27,12 @@ public class EmailVerificationManager {
 
     @Inject
     private EmailManager emailManager;
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         verifCode = verificationCode();
     }
-            
+
     private String verifCode;
 
     public String getVerifCode() {
@@ -44,15 +44,15 @@ public class EmailVerificationManager {
         Integer rand = (int) (Math.random() * 100);
         return time.toString() + rand.toString();
     }
-    
+
     public void sendVerificationEmail(Account account) {
-        String address = account.getEmail();
-        String subject = ContextUtils.i18NMessageMail("contact.registration.subject");
-        String message = ContextUtils.i18NMessageMail("contact.registration.message");
-        String url = "http://localhost:8080/AdvertApp/EmailVerificationServlet?verifCode=" + verifCode;
-        StringBuilder sb = new StringBuilder();
-        sb.append(message).append(System.lineSeparator()).append(System.lineSeparator()).append(url);
         try {
+            String address = account.getEmail();
+            String subject = ContextUtils.i18NMessageMail("contact.registration.subject");
+            String message = ContextUtils.i18NMessageMail("contact.registration.message");
+            String url = "http://localhost:8080/AdvertApp/EmailVerificationServlet?verifCode=" + verifCode;
+            StringBuilder sb = new StringBuilder();
+            sb.append(message).append(System.lineSeparator()).append(System.lineSeparator()).append(url);
             emailManager.sendEmail(address, subject, sb.toString());
         } catch (MessagingException ex) {
             LOGGER.log(Level.SEVERE, null, ex);

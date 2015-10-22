@@ -64,6 +64,4 @@ public class AccountEndpoint extends AbstractEndpoint implements SessionSynchron
     public List<Account> obtainAccounts() {
         return accountFacade.findAll();
     }
-
-    
 }

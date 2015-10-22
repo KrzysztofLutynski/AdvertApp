@@ -77,15 +77,13 @@
 
                     <p:commandButton value="#{msg['button.contact.seller']}" action="#{viewAdvertPageBean.contactSeller}"
                                      disabled="#{viewAdvertPageBean.disableContactSeller()}"/> 
-
                 </h:panelGroup>
+                
                 <br/><br/>
-
                 <p:outputLabel value="#{msg['advert.picture']}:" for="picture" rendered="#{not empty viewAdvertPageBean.advert.picture}" />
                 <o:graphicImage id="picture" value="#{viewAdvertPageBean.advert.picture}" dataURI="true" rendered="#{not empty viewAdvertPageBean.advert.picture}" 
                                 title="#{msg['advert.picture']}"/>
                 <br/><br/>
-
             </h:panelGrid>
 
         </h:form>

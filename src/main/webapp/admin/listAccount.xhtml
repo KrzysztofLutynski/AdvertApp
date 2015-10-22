@@ -62,10 +62,6 @@
                                    onclick="return confirm('#{msg['account.delete.confirm']}');" disabled="#{acc.email==listAccountPageBean.account.email}"/>
                 </h:column>
             </h:dataTable>
-            <!--            <br/><br/>
-                        <p:message for="remark"/>
-                        <h:outputText id="remark"/>
-                        <br/>-->
             <p:dialog header="#{msg['app.error']}" widgetVar="dlg" closable="false" 
                       width="450px" resizable="false" modal="true">
                 <p:messages/>
@@ -74,4 +70,5 @@
             </p:dialog>
         </h:form>
     </ui:define>
+    
 </ui:composition>

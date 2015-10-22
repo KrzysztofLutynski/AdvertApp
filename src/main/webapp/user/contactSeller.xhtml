@@ -15,7 +15,6 @@
 
     <ui:define name="section">
         <h:form id="contactSellerForm">
-
             <h:panelGrid cellpadding="10"> 
                 <p:outputLabel value="#{msg['contact.seller.reserve.description']}" rendered="#{contactSellerPageBean.reserveFlag}"/>         
                 <p:outputLabel value="#{msg['contact.seller.description']}" rendered="#{not contactSellerPageBean.reserveFlag}"/>
@@ -43,8 +42,6 @@
                 <p:commandButton value="OK" action="listSearchedAdverts" immediate="true"/>
             </p:dialog>
         </h:form>
-
     </ui:define>
-
 
 </ui:composition>

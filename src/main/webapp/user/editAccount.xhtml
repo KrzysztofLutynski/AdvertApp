@@ -14,22 +14,18 @@
     <ui:define name="section">
         <h:form id="editAccountForm" >
             <h:panelGrid columns="3" cellpadding="10"  > 
-
                 <p:outputLabel value="#{msg['registration.name']}:" for="name" />         
                 <p:inputText id="name" value="#{editAccountPageBean.account.firstName}"  title="#{msg['registration.name']}"/> 
                 <p:message for="name" />
-
 
                 <p:outputLabel value="#{msg['registration.surname']}:" for="surname"/>         
                 <p:inputText id="surname" value="#{editAccountPageBean.account.lastName}"  title="#{msg['registration.surname']}"/> 
                 <p:message for="surname"  />
 
-
                 <p:outputLabel value="#{msg['registration.email']}:" for="email" />         
                 <p:inputText id="email" value="#{editAccountPageBean.account.email}" title="#{msg['registration.email']}"
                              onclick="return alert('#{msg['email.change.instruction']}');"/>
                 <p:message for="email"  />
-
 
                 <p:outputLabel value="#{msg['registration.password']}:" for="password"/>         
                 <p:password id="password" value="#{editAccountPageBean.account.password}" title="#{msg['registration.password']}" />
@@ -41,21 +37,14 @@
                             required="true" requiredMessage="#{msg['field.required']}!"/>
                 <p:message for="passwordCheck"/>
                 <br/><br/>
-                <!--                <p:message for="remark"/>
-                                <h:outputText id="remark"/>
-                                <br/>-->
             </h:panelGrid>
-
             <h:panelGrid class="center"  columns="3" >
-
                 <p:commandButton value="#{msg['menu.edit']}" action="#{editAccountPageBean.editAccount}" 
                                  onclick="return confirm('#{msg['confirm.box']}');"/>
-
                 <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
 
                 <p:commandButton value="#{msg['button.delete']}" action="#{editAccountPageBean.deleteAccount}"
                                  onclick="return confirm('#{msg['account.delete.confirm']}');" />
-
             </h:panelGrid>
             <p:dialog header="#{msg['app.error']}" widgetVar="dlg" closable="false" 
                       width="450px" resizable="false" modal="true">
@@ -65,4 +54,5 @@
             </p:dialog>
         </h:form>
     </ui:define>
+    
 </ui:composition>

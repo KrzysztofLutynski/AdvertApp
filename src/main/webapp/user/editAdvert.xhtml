@@ -16,7 +16,6 @@
     <ui:define name="section">
         <h:form id="editAdvertForm" enctype="multipart/form-data">
             <h:panelGrid columns="3" cellpadding="10"> 
-
                 <p:outputLabel value="#{msg['advert.category']}:" for="category" />         
                 <p:selectOneMenu id="category" value="#{editAdvertPageBean.advert.category}" converter="omnifaces.SelectItemsConverter">
                     <f:selectItems value="#{editAdvertPageBean.categoryList}" var="c" itemValue="#{c}" itemLabel="#{c.category}"  />
@@ -50,15 +49,11 @@
                               invalidSizeMessage="#{msg['advert.picture.invalid.size']}" mode="advanced"/>
                 <p:message for="picture" />
                 <br/><br/><br/>
-
             </h:panelGrid>
             <h:panelGrid columns="2"  class="center">
-
                 <p:commandButton value="#{msg['menu.save']}" action="#{editAdvertPageBean.editAdvert}" 
                                  onclick="return confirm('#{msg['confirm.box']}');"/>
-
                 <p:commandButton value="#{msg['action.cancel']}" action="start" immediate="true" />
-
             </h:panelGrid>
             <p:dialog header="#{msg['app.error']}" widgetVar="dlg" closable="false" 
                       width="450px" resizable="false" modal="true">
