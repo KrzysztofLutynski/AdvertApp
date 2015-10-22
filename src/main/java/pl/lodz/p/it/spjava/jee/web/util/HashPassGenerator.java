@@ -18,5 +18,4 @@ public class HashPassGenerator {
 
         System.out.println(generateHash("haslo"));
     }
-
 }

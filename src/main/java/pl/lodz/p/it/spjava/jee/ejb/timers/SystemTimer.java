@@ -40,5 +40,4 @@ public class SystemTimer {
         hr.deleteExpiredReservedAdverts();
         hr.remindReservedExpiration();
     }
-    
 }

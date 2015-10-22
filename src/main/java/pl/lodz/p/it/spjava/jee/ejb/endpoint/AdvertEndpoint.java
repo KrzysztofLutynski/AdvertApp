@@ -65,5 +65,4 @@ public class AdvertEndpoint extends AbstractEndpoint implements SessionSynchroni
     public void deleteAdvert (final Advert advert) throws BaseException{
         advertFacade.remove(advert);
     }
-
 }

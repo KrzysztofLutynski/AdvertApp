@@ -1,7 +1,5 @@
 package pl.lodz.p.it.spjava.jee.ejb.endpoint;
 
-
-
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.SessionSynchronization;
@@ -29,5 +27,4 @@ public class CategoryEndpoint extends AbstractEndpoint implements SessionSynchro
     public List<Category> obtainCategory(){
         return categoryFacade.findAll();
     }
-
 }

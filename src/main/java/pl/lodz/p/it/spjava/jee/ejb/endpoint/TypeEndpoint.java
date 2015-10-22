@@ -27,5 +27,4 @@ public class TypeEndpoint extends AbstractEndpoint implements SessionSynchroniza
     public List<Type> obtainTypes(){
         return typeFacade.findAll();
     }
-
 }

@@ -94,5 +94,4 @@ public class CreateAdvertPageBean implements Serializable {
         advertSession.createAdvert(advert);
         return "success";
     }
-
 }

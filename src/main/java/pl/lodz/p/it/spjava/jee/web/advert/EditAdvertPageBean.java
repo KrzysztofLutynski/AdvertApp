@@ -12,11 +12,9 @@ import javax.inject.Named;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import pl.lodz.p.it.spjava.jee.exception.BaseException;
-import pl.lodz.p.it.spjava.jee.model.Account;
 import pl.lodz.p.it.spjava.jee.model.Advert;
 import pl.lodz.p.it.spjava.jee.model.Category;
 import pl.lodz.p.it.spjava.jee.model.Status;
-import pl.lodz.p.it.spjava.jee.web.account.AccountSession;
 import pl.lodz.p.it.spjava.jee.web.util.ContextUtils;
 
 /**

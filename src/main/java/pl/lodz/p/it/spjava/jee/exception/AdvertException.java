@@ -41,5 +41,4 @@ public class AdvertException extends BaseException {
         ae.advert=advert;
         return ae;
     }
-    
 }

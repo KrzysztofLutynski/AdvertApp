@@ -95,5 +95,4 @@ public class HandleReservation {
             LOGGER.log(Level.SEVERE, null, ex);
         }
     }
-
 }

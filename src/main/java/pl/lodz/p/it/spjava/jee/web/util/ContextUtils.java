@@ -72,5 +72,4 @@ public class ContextUtils {
         msg.setSeverity(FacesMessage.SEVERITY_WARN);
         RequestContext.getCurrentInstance().showMessageInDialog(msg);
     }
-
 }

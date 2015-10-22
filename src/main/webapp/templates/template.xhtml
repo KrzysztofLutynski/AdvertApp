@@ -54,9 +54,7 @@
                     <h:commandLink action="/user/listUserAdverts?faces-redirect=true" value="#{msg['advert.user.list.header']}"/>
                     <br/>
                     <h:commandLink action="/user/listReservedAdverts?faces-redirect=true" value="#{msg['advert.reserved.list.header']}"/>
-
                 </h:form>
-
                     <p>*********************</p>
                 <h:form rendered="#{request.isUserInRole('Administrator')}">
                     <h:commandLink action="/admin/listAccount?faces-redirect=true" value="#{msg['list.account.description']}"/>

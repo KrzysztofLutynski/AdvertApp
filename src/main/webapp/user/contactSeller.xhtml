@@ -7,8 +7,6 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
-
-
     <ui:define name="header">
         <p>#{msg['contact.seller.header']}</p>
     </ui:define>
@@ -24,7 +22,6 @@
                 <p:outputLabel value="#{msg['contact.seller.body']}:" for="body"/>         
                 <p:inputTextarea rows="8" cols="50" id="body" value="#{contactSellerPageBean.msg}" title="#{msg['contact.seller.body']}"/> 
                 <p:message for="body"/>
-
                 <br/><br/><br/>
             </h:panelGrid>
             <h:panelGrid columns="2"  class="center">

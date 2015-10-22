@@ -27,7 +27,4 @@ public class TypeFacade extends AbstractFacade<Type> {
     public TypeFacade() {
         super(Type.class);
     }
-    
-    
-    
 }

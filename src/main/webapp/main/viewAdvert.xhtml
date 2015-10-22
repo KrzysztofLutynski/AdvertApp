@@ -7,9 +7,6 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:o="http://omnifaces.org/ui">
-                
-
-
 
     <ui:define name="header">
         <p>#{msg['advert.view.header']}</p>
@@ -74,21 +71,16 @@
                     <p:commandButton disabled="#{viewAdvertPageBean.disableReserve()}" value="#{msg['button.reserve']}" 
                                      action="#{viewAdvertPageBean.reserveAdvert}" onclick="return confirm('#{msg['reserve.confirm']}');"  />
 
-
                     <p:commandButton value="#{msg['button.contact.seller']}" action="#{viewAdvertPageBean.contactSeller}"
                                      disabled="#{viewAdvertPageBean.disableContactSeller()}"/> 
                 </h:panelGroup>
-                
                 <br/><br/>
                 <p:outputLabel value="#{msg['advert.picture']}:" for="picture" rendered="#{not empty viewAdvertPageBean.advert.picture}" />
                 <o:graphicImage id="picture" value="#{viewAdvertPageBean.advert.picture}" dataURI="true" rendered="#{not empty viewAdvertPageBean.advert.picture}" 
                                 title="#{msg['advert.picture']}"/>
                 <br/><br/>
             </h:panelGrid>
-
         </h:form>
-
     </ui:define>
-
 
 </ui:composition>

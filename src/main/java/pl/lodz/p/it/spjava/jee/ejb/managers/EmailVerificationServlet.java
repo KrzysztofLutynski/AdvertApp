@@ -44,6 +44,5 @@ public class EmailVerificationServlet extends HttpServlet {
             LOGGER.log(Level.SEVERE, null, ex);
             response.sendRedirect("main/userActivateError.xhtml");
         }
-
     }
 }

@@ -27,5 +27,4 @@ public class StatusFacade extends AbstractFacade<Status> {
     public StatusFacade() {
         super(Status.class);
     }
-    
 }
