@@ -7,7 +7,6 @@
     <validation-mode>NONE</validation-mode>
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
 </persistence>
